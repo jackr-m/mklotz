@@ -5,13 +5,13 @@ These are designed to be as close to a 1-1 copy of Marv Klotz's programs
 
 
 Currently converted programs:
--3WIRE
--ROTARY
--SINEBAR (EVERYTHING DONE EXCEPT FOR FINDING THE INDIVIDUAL GAGE BLOCKS)
--BOLTCIRC
--COMPOUND
--DALLOW
--KNURL
+- 3WIRE
+- ROTARY
+- SINEBAR (EVERYTHING DONE EXCEPT FOR FINDING THE INDIVIDUAL GAGE BLOCKS)
+- BOLTCIRC
+- COMPOUND
+- DALLOW
+- KNURL
 
 Programs to be converted soon:
 - DIAM
