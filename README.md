@@ -32,6 +32,10 @@ Change-Log:
 
 v0.00:
 - Added readme & license
+
 v0.10:
 - Added unzipped files from Marv Klotz's programs
 - Added current python3 conversions
+
+v0.11:
+- Fixed README.md formatting
