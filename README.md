@@ -25,5 +25,5 @@ Programs to be converted soon:
 - GAGE
 
 To-do List:
-	- Create two directiories for short file names (DOS compatability) and long file names (more descriptive)
-	- Compile python programs into a single .exe file to mimick mklotz's original programs
+1. Create two directiories for short file names (DOS compatability) and long file names (more descriptive)
+2. Compile python programs into a single .exe file to mimick mklotz's original programs
