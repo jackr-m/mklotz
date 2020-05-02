@@ -27,3 +27,11 @@ Programs to be converted soon:
 To-do List:
 1. Create two directiories for short file names (DOS compatability) and long file names (more descriptive)
 2. Compile python programs into a single .exe file to mimick mklotz's original programs
+
+Change-Log:
+
+v0.00:
+- Added readme & license
+v0.10:
+- Added unzipped files from Marv Klotz's programs
+- Added current python3 conversions
