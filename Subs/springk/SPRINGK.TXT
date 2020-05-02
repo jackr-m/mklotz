@@ -1,0 +1,42 @@
+Dave Baker, responding to a question in rec.crafts.metalworking about
+calculating spring constants, wrote the following:
+
+<begin quote>
+My own formula is an adaptation of the textbook one derived empirically from
+many measurements of mainly engine valve springs and also some suspension
+springs. Those are very different in terms of length and wire diameter so a
+formula that applies to both ought to be fairly comprehensive. I use it for
+designing special valve springs for race engines.
+
+With dimensions in mm.
+
+Spring diameter (D) = mean diameter i.e. o/d minus wire thickness (or i/d plus
+wire thickness of course)
+
+Number of working coils (N) = fully compressed length divided by wire diameter
+minus a further 1.7 (to allow for dead coils at each end)
+
+(d) = Wire diameter
+
+Spring rate in pounds/inch is
+
+d^4 / D^3 / N * 60,000
+
+Note that most helically wound coil springs don't have a perfectly linear
+spring rate. The rate increases as the amount of compression increases. From my
+own measurements of valve springs which have a travel of about 3/4" to 1" the
+rate over the last 1/4" travel is on average about 10% higher than the rate
+over the first 1/4" travel.
+
+I've seen springs with a rate rise of as much as 20% and others that were close
+to linear. I've found no particular explanation of why they vary and find it
+can't be predicted from looking at the spring design. In any case all engine
+valve springs are very similar in size and number of coils. It's something I'd
+like to find the reason for.
+<end quote>
+
+Since Dave's formula has the obvious advantage of having been verified in
+actual usage, I thought it deserved a place in the 'Submitted Software' section
+of my page.  Dave was generous enough to give his permission to publish his
+work.
+

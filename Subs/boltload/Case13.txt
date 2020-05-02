@@ -1,0 +1,11 @@
+[General]
+Analysis Type=Bolt Group
+ 
+[Analysis Data]
+Analysis Title=Roark & Young Loading
+Load Case Title=From 6th edition, page 600
+Number of Bolts=3
+Bolt 1=0.0000,0.0000,0.0000,1,1,1,0,0
+Bolt 2=12.0000,0.0000,0.0000,1,1,1,0,0
+Bolt 3=6.0000,-9.0000,0.0000,1,1,1,0,0
+Applied Load=0,2,0,-15000,0,0,0,0

@@ -1,0 +1,193 @@
+EE - Expression Evaluator                                       January 1992
+
+By:     Mark Morley
+        3889 Mildred Street
+        Victoria, B.C.  Canada
+        V8Z 7G1
+        (604) 479-7861
+
+As it is noted in the source code, you are free to do anything you desire
+with this code, as long as you give credit where credit is due...  For
+criticism, fixes, suggestions, enhancements, job offers, etc, send E-Mail to
+
+        morley@Camosun.BC.CA
+
+I will do my best to fix any reported bugs and incorporate any suggestions,
+but since this isn't exactly what I get paid for, I have to do it on my own
+free time... ;)
+
+Please let me know how you like this program and how you use it, this is my
+first "public" submission of code and I'd really appreciate any feedback.
+
+
+OK, here we go...
+
+The EE module provides a handful of 'C' routines that allow you to incorporate
+mathematical expression evaluation into your programs.  For example, using
+these routines you can evaluate such expressions as:
+
+        1+1
+        10 * (x=5)                 <== Assigns 5 to X first!
+        ((1/3) * sin(45))^2
+        X=50
+        Y=100
+        z=hypot(x,y)
+
+As you can see, it supports variable assignments and referencing, as well as
+functions.  Variable and function names are limited to 16 characters in length,
+but this is easily modified in the .H file.  Functions may have anywhere from
+1 to 3 arguments, again this is modifiable.
+
+It also maintains a set of "read-only variables" (constants) that can be
+referenced just like variables, but they cannot be permanently altered by
+the user.  Constants are defined by you in the EE.C file.
+
+*** ATTENTION VMS USERS: If you assign or reference a variable that begins
+with an underscore character (_), the assignment/reference applies to an
+external DCL symbol.  For example:  If you type EE x=1.3 at the DCL prompt,
+EE will set an internal variable called X to the value of 1.3  However, if
+you type EE _x=1.3 at the DCL prompt, EE will create (or reassign) a DCL
+symbol called X (<== note there is *no* underscore here!) and give it the
+value of 1.3  Since DCL does not support floating point symbols directly, 
+this symbol will be in string format.  If it is referenced in a subsequent
+invocation, its value will be converted back to a floating point value
+internally.  Keep in mind that this *can* lead to truncation/precision 
+errors...  You cannot use EE to delete a DCL symbol.
+
+
+The EE.C file includes a main() routine that implements a simple calculator
+that works the following way...
+
+If you supply any command line arguments to EE, it will concatenate them all
+into one string and attempt to evaluate them.  This saves you from having to
+put quotes around expressions that contain spaces.  If the evaluation is
+successful, the answer is displayed.  If an error is encountered a message is
+displayed.
+
+If no command line arguments are passed, then EE goes into an interactive
+mode and displays the EE> prompt.  Anything typed at this prompt is evaluated
+as an expression with the exception of the following keywords:
+
+        EXIT       Exits the program.
+        VARS       Shows a list a variables and their values.
+        CONS       Shows a list of constants and their values.
+        CLR        Erases all variables.
+
+In itself EE.EXE may be a useful utility to you and you are free to use and
+distribute it...
+
+
+NOTE:  These routines are somewhat recursive, so you'd better have a decent
+       amount of stack space (for those of you who worry about such things)
+       Obviously, the more parenthesis, function calls, etc. that are in
+       your expressions, the more recursion that takes place.  There is no
+       built-in checking for maximum recursion depths, etc.
+
+Although a certain amount of syntactic error checking is done, overflows
+and other math errors are left for you to catch with the matherr() function.
+Also, depending on the "inner workings" of your C compiler's floating point
+routines, you may experience small losses of precision.  For example: On my
+486 running DOS and using BORLAND C++, the result of 1+0.9999 is 1.9999 but
+the result of 1+0.99999 comes out as 2.  This can be fixed in various ways
+but I leave it to you for now...
+
+
+Operator Precedence
+===================
+
+This routine handles the following "operators" in the following priority:
+1) Anything enclosed in ()'s as well as variables and functions.
+2) Unary + and - signs
+3) "To the power of" symbol: ^
+4) Times (*), divide (/), and modulus (%)
+5) Plus (+) and minus (-)
+6) Assignments (=)
+
+
+The callable routines in EE.C are as follows:
+
+Evaluate( char* e, double* r, int* a )
+==============================
+
+Where:
+    e is a math expression to evaluate (in the form of a string)
+    r is a pointer to a place to store the result
+    a is a pointer to a flag
+
+    This function evaluates the expression and passes back the result.  If the
+    evaluation is successful, a value of E_OK (0) is returned.  If the
+    expression happened to be a top-level assignment, then a value of 1 will
+    be returned in A, otherwise a value of 0 will be placed here.  Other return
+    values are:
+
+        E_SYNTAX  (1)  Syntax error
+        E_UNBALAN (2)  Unbalanced parenthesis
+        E_DIVZERO (3)  Attempted division by zero
+        E_UNKNOWN (4)  Reference to unknown variable
+        E_MAXVARS (5)  Maximum variables exceeded
+        E_BADFUNC (6)  Unrecognised function
+        E_NUMARGS (7)  Wrong number of arguments to function
+        E_NOARG   (8)  Missing an argument to a function
+        E_EMPTY   (9)  Empty expression
+
+    If a value other than E_OK is returned, then you can use the following
+    global variables to report the error:
+
+        int   ERROR    The error code (as above)
+        char* ERANC    A pointer to the original expression
+        int   ERPOS    The position in the expression where the error happened
+        char* ERTOK    The token (symbol) that caused the error
+
+
+ClearAllVars()
+==============
+
+    This function erases all user-defined variables.  It should be called
+    at least once at the beginning of your program, before trying to evaluate
+    anything.
+
+
+ClearVar( char* n )
+===================
+
+Where:
+    n is the name of a variable
+
+    This function erases a specific user-defined variable.  A value of 1 is
+    returned if the variable existed, a 0 if it didn't.
+    VMS Users: This has no effect on DCL symbols
+
+
+GetValue( char* n, double* v )
+==============================
+
+Where:
+     n is the name of a variable
+     v is a pointer to the place to put the value
+
+     This function looks up the specified variable and passes back its value.
+     If the variable is found, it returns a 1, otherwise it returns a 0
+
+
+SetValue( char* n, double v )
+=============================
+
+Where:
+     n is the name of a variable
+     v is a numeric value
+
+     This function creates a new user-defined variable.  If the variable
+     already exists, its current value is replaced with the new value.
+
+     A value of 1 is returned if it is successful, a 0 if there is no more
+     room for variables.
+
+     It should be noted here that an expression like A=1+1, passed to
+     Evaluate(), will result in this function being called.  Note also that
+     an expression like A= will result in the variable A being erased.
+
+Enjoy!
+
+MARK
+
+

@@ -1,0 +1,234 @@
+Program Copyright Richard Williams (R.W.W) e-mail richardandtracy@yahoo.com
+
+Permission is hereby granted to anyone who wants to, to use and distribute the program free of charge for non-commercial use. Commercial use must be discussed with R.W.W first.
+
+The source code is bundled with the program so that you can follow the code if you wish to. HOWEVER I WOULD VERY, VERY, VERY STRONGLY RECOMMEND THAT YOU DO NOT MODIFY THE CODE. The unit load calculation routine is exceedingly complex, and will give wildly inaccurate results if so much as a + or - is changed. [To give an example, while debugging I had a + where there should have been a -, and the analysis converged on a figure of 8.63E305, when it should have been -0.500.]
+
+
+There - those conditions aren't too onerous are they?
+
+//---------------------------------------------------------------------------
+
+Contents
+1.	Introduction
+2.	Beginners guide to how the program works
+3.	How the program works
+4.	How to use the program
+5.	Limitations
+6.	Input file format
+7.	Using the program - some tips
+8.	Bugs
+9.	Suggestions
+
+//---------------------------------------------------------------------------
+
+1.      Introduction
+
+This program is used to calculate the loads applied to individual bolts within a group of bolts when subject to a load applied to a rigid structure.
+
+
+2.     Beginners guide to how the program works
+
+Unless you're a professional structural or mechanical engineer it's unlikely that you've come across bolt group theory, so here's a pretty non-technical beginners guide to what the program does and how it does it. If you are familiar with bolt group theory, skip to section 3.
+
+The easiest way of explaining how the program works is to take an example. Imagine a post bolted to a flat concrete pan with shield anchors. This post is going to be an elephant's scratching post in a zoo, so there will be a large force applied to the top of the post. Refer to the jpeg file attached for the figure references to illustrate the examples. Where there are engineering terms with specific engineering meanings, I have put them in capitals - and on the first time they're encountered an explanation of their meaning.
+
+Figure 1.
+To begin with, assume a horizontal leaning load from the elephant at the top of the post, and one bolt at the bottom of the post. This situation is dreadful, as the bolt takes the force at the top of the post (called the DIRECT LOAD) in shear and is also bent by the load. The amount of bending in the bolt is determined by the force at the top of the post multiplied by the post height, this is called the BENDING MOMENT. Bending bolts is one of the best ways of breaking them, so we don't want to do this.
+
+Figure 2.
+Now we've two bolts. The DIRECT LOAD is spread between two bolts, and if the base of the post is rigid, the bolts will not be in bending. The way the BENDING MOMENT is reacted is by tension in one bolt and compression in the other. This tension or compression is called a DIFFERENTIAL INDUCED LOAD or a DIFFERENTIAL LOAD. It is also dependant on the distance between the two bolts - the greater the distance, the lower the DIFFERENTIAL LOAD. This is intuitively correct too, as the wider the base of an object, the harder it will be to push the post over.
+
+Figure 3.
+Now there are three bolts in the base of the post, one is halfway between the other two. How does this help? To begin with, the extra bolt means that the DIRECT LOAD is spread between three bolts, that's advantageous. Now, what about the DIFFERENTIAL LOAD? In fact it's not changed in the outer bolts at all, and there is no DIFFERENTIAL LOAD on the central bolt. 
+Why?
+This is where you have to imagine the bolt group working together. The elephant's leaning load causes a MOMENT (force multiplied by distance) around the centre of the group of bolts (the CENTROID). This has to be withstood (REACTED) by the load in the bolts. The load is proportional to their distance from the bolt group CENTROID (This is one of the defining assumptions of Bolt Group Theory). Now, the MOMENT induced by the bolt loads must be equal and opposite to the MOMENT applied by the elephant (otherwise the post would fall over). Also, with three equally spaced bolts, the bolt group centroid will always fall at the central bolt, so it's contribution to reacting the applied MOMENT is nil. This means that the DIFFERENTIAL LOAD hasn't changed in the outer bolts at all.
+
+Figure 4.
+Four bolts, all equally spaced. All bolts take DIRECT LOAD, and all take DIFFERENTIAL LOAD, because none are on the bolt group centroid. However, when you calculate the loads, the central two have only one third of the DIFFERENTIAL LOAD of the outer two, that's because they are only one third the distance from the bolt group CENTROID.
+
+Figure 5.
+Now extend the idea to the elephant pushing the post across at the same time as pulling up on it. There are four bolts at the base of the post. Well. The elephant's load can be broken down into components at right angles to each other - a horizontal component and a vertical component (the loads are said to be RESOLVED into ORTHOGONAL directions).
+Now, even though we've got a vertical load to think about too, the horizontal component will still load the four bolts in exactly the same way as it did in figure 4. What about the vertical load?. Well, that applies a DIRECT LOAD to all the bolts in the same manner as the horizontal load. This vertical load adds to the load in the bolts due to the horizontal DIFFERENTIAL LOAD (direction signs on the loads must be rigorously adhered to though).
+
+Figure 6.
+There is now a cross piece on the top of the post, and the elephant is scratching behind it's ear. The load can be RESOLVED as before, and the horizontal DIRECT and DIFFERENTIAL LOADS calculated as before. The vertical DIRECT LOAD is also as calculated before. However there is something new too. The vertical up load is not acting through the bolt group CENTROID, so the vertical load also induces DIFFERENTIAL LOADS which must be added to the loads already calculated. All this takes time to calculate by hand. Thank goodness there's a program available!
+
+OK, now to extend the idea further:-
+
+a) So far we've been working in 2 dimensions. Now add a third dimension to the applied load and bolt group, once again the loads act around the bolt group centroid causing DIRECT and DIFFERENTIAL LOADS.
+
+b) Make the base of the post some other shape than flat. When you do this the DIFFERENTIAL LOADS stray away from vertical, as they are really loads acting tangentially about the bolt group CENTROID. The DIFFERENTIAL LOADS have seemed to be vertical so far because the bolt group has been flat up until this point - so the tangential direction is vertical. These DIFFERENTIAL LOADS will then put the bolt into shear and tension/ compression.
+
+c) Put some of the bolts in slots so that they can't take load in some directions, but can in other directions. This means that the bolt group CENTROID is different in different directions. For this a bolt is given a relative stiffness, 1.0 for a bolt offering restraint in a direction and 0.0 for a bolt in a slot in that direction. With care this idea can also be used to represent bolts with different diameters in the group. For example an M10 coarse bolt has a minimum minor area of 49.49mm^2, and an M8 coarse has an area of 30.90mm^2. Thus the relative stiffnesses used in the program would be 1.00 and 0.62 respectively.
+
+d) The whole bolt group theory is really independant of the thing causing the load (the elephant) and the item connecting the load to the bolts (the post). So let's get rid of these mental props and only consider the load application point and the geometry of the bolts.
+
+Now you're ready for the full three dimensional bolt group program. Specify the bolt position in space, stiffness in each direction, the load in each direction and the point of application of the load. Hey presto, you get the bolt loads out. 
+
+This type of program has been used to check rivet loads in aircraft, bolt loads in loft conversion strengthening beams, attachment loads in camper van conversions - and, yes it really has, elephant scratching post bolt patterns in a zoo after the elephants kept knocking over their previous post (the old elephant pen at Howletts Zoo near Canterbury, England, not used now as they've gone to a bigger & better pen with a scratching post embedded in a HUGE concrete block). It is very versatile.
+
+This program is really just one step down from the accuracy of Finite Element Stress analysis (FE). FE takes into account the stiffness of the structure in addition to the geometry, but with very stiff structures relative to the bolts (a majority of structures fall into this category) the inaccuracy is going to be fairly small (in the region of 1-2%).
+
+Do read the program limitations section though!
+
+
+3.     How the program works
+
+It's very hard to give specifics. Generally the program works as described below:-
+
+a)	You write a text file with all the required data in it of the format shown in the "File Format" section below.
+b)	Launch the program, and the file is read in.
+c)	A load at each bolt is calculated for a unit load in each axis. This is the Unit Load Matrix. The unit load matrix iterates to an out of balance moment about the centroid of less than 0.00001 force x distance units. [In lbf.in units, that's a tiny out of balance.]
+d)	The unit load matrix is multiplied by the applied load, to give a resultant load matrix.
+e)	If bolt axis directions are specified, the resultant loads matrix is resolved into the shear and axial bolt loads.
+f)	The output text file is then created, consisting of a printout of the Unit Load Matrix, the net out of balance, the bolt co-ordinates and a whole load of verification information for those with a knowledge of Bolt Group Theory. This is then followed by the Resultant Loads Matrix, and if applicable a resolved bolt load section.
+
+
+4.	How to use the program
+
+From the DOS prompt type:-
+"Bolt Filename.txt"
+where Filename.txt is the name of the input data file. 
+The program does not default to any extension, but does require an ASCII text file.
+
+The output file will be called
+"BoltLoad.txt" in the same directory as Filename.txt. 
+Any old version of BoltLoad.txt will be over-written.
+
+
+5.     Limitations
+
+The principal limitation of the bolt group analysis is implicit in the Rigid Body Analysis it uses. If there is any flexibility in the structure, then it becomes innacurate, the greater the level of flexibility - the greater the inaccuracy. If you wish to use your engineering judgement to assess that a particular bolt is on a piece of structure that has a different stiffness compared to another and simulate this with the relative bolt stiffnesses (i.e. fx, fy and/or fz other than 0 or 1), then GOOD LUCK, you'll need it... 
+
+Please note that rotational stiffness is not modelled in any way. 
+The modelling of slots is limited to the X, Y and Z axis directions. This is because it's bad enough working out the maths as it is let alone allowing freedom at various angles - I just can't cope with any more complexity!
+
+When there are more than 3 bolts the analysis becomes statically indeterminate. The bolt group analysis tool iterates to a solution that gives the correct unit loads and residual moments that are less than 0.00001. You must remember that the bolt loads presented may be only one of a range of solutions that all meet the same criteria. If you do not believe the loads found, then use another method to find another one of the possible solutions. You need to exercise good engineering judgement when using this tool. It can bite the unwary!
+[I feel a bit of reassurance is needed here:- The unit load calculation section where all the hard work goes on has remained the same for about a decade now (ignoring the fact it's gone through 3 different programming languages) - chiefly because it works well under a wider range of scanarios than many other calculation methods. Also, the program has been verified with 13 verification models covering all load combinations in all axes - the verification models are included in the download zip file and are called "Case**.txt"]
+
+The program has been tested with an insane number of bolts (17000!) and there were no analysis problems (apart from being very slow) - but if there are more than about 20, then please consider a method for simplification of the problem (for your own sake... do you really want to type in more than 20 bolt positions & stiffnesses?). With 17000 bolts the analysis text is approx 12 Mb (yet another good reason for not having a huge number of bolts). With 17000 bolts the analysis will take about 5 to 6 minutes on a 166 MHz machine, so don't get too impatient with your PC if it seems to be taking a long time. With a more reasonable number of bolts you won't even notice the analysis time.
+
+One thing you MUST do is to verify the program yourself before you first use it for a critical job. This will then enable you to see whether you have any concerns about the loads it iterates to and the types of answers it provides. It is a little bit of a cop-out on my behalf, but it may be vitally important that you check there aren't any problems with it in your application. I must say that I'm unable to test the program in all likely scenarios of use - and consequently can't be 100% certain it's suitable for the use you put it to.
+
+Finally, the bolt group program cannot model abutment. This is the situation where an edge digs into something solid and thereby alters the centroid of the bolt group. If this occurs, the bolt group program will be giving you bolt loads that are higher than those that will occur, and consequently always errs on the safe side.
+
+
+6.	Input file format
+
+The Bolt Group Analysis input data file format is that of a standard Windows INI file (ie plain text), with the sections shown below. Note there must be only one line per entry and only one entry per line. Do Not Forget The [General] Entry!
+
+
+[General]
+Analysis Type=Bolt Group
+
+[Analysis Data]
+Analysis Title=Put Model Title Here
+Load Case Title=Put Load Case Title Here
+Number of Bolts=n
+Bolt 1=X Co-ord, Y Co-ord, Z Co-ord, fx, fy, fz, bolt orientation
+Bolt 2=X Co-ord, Y Co-ord, Z Co-ord, fx, fy, fz, bolt orientation
+..
+..
+Bolt n-1=X Co-ord, Y Co-ord, Z Co-ord, fx, fy, fz, bolt orientation
+Bolt n=X Co-ord, Y Co-ord, Z Co-ord, fx, fy, fz, bolt orientation
+Applied Load=X Co-ord, Y Co-ord, Z Co-ord, X Load, Y Load, Z Load
+
+Where:-
+	X Co-ord = X position of the bolt.
+	Y Co-ord = Y position of the bolt.
+	Z Co-ord = Z position of the bolt.
+	fx = stiffness of bolt in the x direction
+	fy = stiffness of bolt in the y direction
+	fz = stiffness of bolt in the z direction
+
+The bolt orientation is an integer, with definition as below:-
+
+0	Bolt Orientation Not Defined (or not along a major axis).
+1	X Axis = Axial, YZ Plane = Shear.
+2	Y Axis = Axial, XZ Plane = Shear.
+3	Z Axis = Axial, XY Plane = Shear.
+
+
+
+The Default Settings are:
+
+[General]
+Analysis Type=None		//Reading file Stops, not a Bolt Group Data file
+
+[Analysis Data]
+Analysis Title=Untitled Model
+Load Case Title=Untitled Load Case
+Number of Bolts=0		//No Bolts, reading of Bolt Data stops. Skips to Applied Load
+Bolt n=0,0,0,1,1,1,0,		//Lots of bolts at the origin!
+Applied Load=0,0,0,0,0,0,0	//No Applied Load
+
+
+
+An example data file is given below:-
+
+[General]
+Analysis Type=Bolt Group
+
+[Analysis Data]
+Analysis Title=Test Model with 8 bolts
+Load Case Title=1lb -X Load Applied at centroid
+Number of Bolts=8
+Bolt 1=0,0,0,1,1,1,0
+Bolt 2=1,0,0,1,1,1,1
+Bolt 3=1,1,0,1,1,1,2
+Bolt 4=0,1,0,1,1,1,3
+Bolt 5=0,0,1,1,1,1,0
+Bolt 6=1,0,1,1,1,1,1
+Bolt 7=1,1,1,1,1,1,2
+Bolt 8=0,1,1,1,1,1,3
+Applied Load=0.5,0.5,0.5,-1,0,0,0,0
+
+
+7.	Using the program - some tips
+
+The program will be a little daunting to use the first time, so here are some tips.
+
+7.1	Choose whatever origin you want. I often set an origin so that the load is at 0,0,0, and measure the bolts from there. Equally often I choose one convenient bolt as the origin. Basically, it doesn't matter one iota, just so long as everything is consistant.
+
+7.2	Choose whatever axes you want. The program is set up that +X is aft, +Y is starboard, +Z is up. However, don't feel overly constrained by this. Just be consistent. And use a right handed set of axes! [To orient the right handed axes in a real situation:- Right Thumb = +X, Right Index Finger = +Y, Right Middle Finger = +Z, all held at right angles, point the thumb in the X direction to get the other two axis directions. See picture RHAxes.jpg for the idea if you can't figure it out from the words above.]
+
+7.3	Choose whatever units you want. AND STICK TO THEM. If the applied load is in pounds, the output loads will be in pounds. If the applied load is in Newtons, the output loads will be too. The actual dimension units (inches, mm, feet, lightyears) doesn't affect the output so long as all measurements use the SAME units.
+
+7.4	Cantilever Beams.
+For cantilever beams (like the elephant scratching post example), you need the point where the load goes and all the bolts at the end of the cantilever.
+
+7.5	Bridge Beams.
+With bridge beams (like those used in an A Frame Crane), to find the bolt loads, you must include all be bolts at each end of the beam, even though you will be modelling two clusters of bolts a long way apart. You'll also need to have the load application point.
+
+7.6	Fish Plated Cantilever Beams.
+Treat as short cantilever beams. Model only the bolts on the restrained side of the fishplates. This will give the bolt loads in the fish plates.
+
+7.7	Fish Plated Bridge Beams.
+If you have a beam that's joined by fish plates (or something similar) the way to model this is to calculate the reaction load at one or both ends of the beam. Choose the reaction load that gives the highest moment at the fishplate. 
+The applied load value and position to be fed into the program is the reaction load acting at the end of the beam. 
+The bolts to model are the bolts on the FAR side of the fishplated joint from the reaction load (higher moment, therefore higher fishplate bolt load). 
+Remember, do not include all the fishplate bolts - as half will be working on one side of the joint, and the rest on the other side.
+[I used this for calculating the loads in my loft conversion. I needed to make two 25" deep ply and softwood girders to span the house to take the extra weight of having a room in the loft. The timbers I took into the loft had to be fishplated together with nail plates as I couldn't get full length beams into the loft through the loft hatch. There were 98 nails on each half of the nail plate top and bottom of the beam. The house hasn't fallen down yet, after 3 years, so it must be OK!]
+
+7.8	Unit in a vehicle.
+Say, for example, you're putting a kitchenette into your camper van. The information needed will be as follows:-
+	Bolt positions: The bolts between the kitchenette and the van.
+	Applied load position: The centre of gravity (CG) of the unit.
+	Applied load value: The weight of the unit multiplied by acceleration.
+For information:- 
+In general the maximum accelerations seen in a road vehicle [when not crashing!] are 1g forward, 0.5g aft, sideways or up and 2g down. These accelerations are not considered at the same time. [During an acceleration of 2g, a 10lb unit will apply a 20 lbf force at its CG, a 10kg unit will apply a force of 2 x 9.81 x 10 = 196.2 Newtons]. The accelerations in a crash tend not to be defined (except for aircraft), and -in Europe- tend not to need to be considered. If not in Europe, check with your local highways department. 
+For sea transport (in that yacht of yours?), the accelerations are usually taken as 2g in any direction (both separately and simultaneously if you're feeling particularly paranoid!).
+
+
+8.	Bugs
+
+None known. Please tell me if you find any.
+
+
+9.	Suggestions
+
+To be honest, there are unlikely to be any changes to this program without user suggestions.
+
+By the way, there is a 32bit windows version available with a full graphical 3D modeller built in etc. E-mail me at richardandtracy@yahoo.com if you would prefer a copy - and put something like "Program Request" in the subject line, otherwise I tend to delete e-mails from unknown senders without reading them. I warn you, the Windows version is a hefty download though (looking at 3Mb or so) as it comes with a heap of user friendly features and 17 other tools aimed at improving the usability of the EMRC NISA Finite Element Stress Analysis package. The windows version is compatible with the file format of the DOS version too, though it requires a ".dat" file extension.
+

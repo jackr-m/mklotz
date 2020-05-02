@@ -1,0 +1,105 @@
+Files:
+   units.dat  174876  the database of units
+   units.doc   32533  a man page
+   units.exe  120569  the executable 
+   units.txt    3671  this file
+
+This submission contains the Windows version of the 'units' program.
+The Linux folks should have units installed by default.
+    
+It is a commandline program, so run it from the commandline window
+(Start/Run: cmd) or 'run in a console'.
+
+You need to start it with:
+    
+   units -f units.dat
+	
+or with
+	
+   set UNITSFILE=\path\to\file\units.dat
+   units
+	       
+Some examples of usage, with explanations:
+	       
+Q: Do I need to lay off dougnuts? 
+A: Yes:
+
+  You have: 185 lb /( 181 cm)^2
+  You want: kg/m2
+  * 25.614172
+
+  Explanation: The BMI (body mass index) value above 25 signifies an
+  overweight condition. BMI is calculated as body weight per square of
+  height. The rationale for it is that, because body fat accumulates
+  under the surface of the skin, and the total skin area is roughly
+  proportional to a person's height, BMI gives sort of the average
+  thickness of fat tissue.
+  
+  Normally people give the formula in one of several forms, with magic
+  coefficients depending on the units in which you give the mass and
+  height. With automatic unit conversion, you just specify the inputs
+  in whatever units you please, and ask for the result in kg per
+  square meter, which is how the BMI was defined:
+
+
+Q: Is gas overpriced? 
+A: I don't know, but it's in line with the electricity cost.
+
+  You have: (2 $/gal) 65 mph / 25 mpg 100 hp 
+  You want: cent /kilo W hr
+  * 6.9733149
+
+  Explanation: a typical car might have about 100 horsepower engine,
+  driving at 65 mph, and using 25 miles per gallon. With $2/gallon
+  gas, it costs about 7 cents per kiloWatt-hour to run this car, which
+  is just about the price that Pepco charges for electricity. In other
+  words, it wouldn't be much cheaper to generate my own power using a
+  gas engine and a generator.
+
+Q: What's the destructive potential of my laptop's battery? 
+A: 29 grams of TNT explosive
+
+  You have: 38030 mW hr
+  You want: g tnt
+  * 29.684715
+
+  Explanation: /proc/acpi/battery/BAT1/info reports that my recent full charge
+  was 38030 mWh; I ask to convert that into stored energy of grams of TNT
+
+Q: Electric kitchen stove's power is easy to calculate: 220V 15A, or 3.3 kW.
+   What's the heating power of a gas stove? 
+A: Also 3.3 kW, perhaps not surprisingly.
+
+  You have: naturalgas 1 l / 10 sec 
+  You want: W
+  * 3296.6929
+
+  Explanation: I measured the outflow from my burner, by capturing the
+  gas into a plastic bag and measuring the volume by displacing water
+  from a pan (for safety, if you repeat this experiment, be sure to
+  let the gas out outside).  I got about a liter of natural gas in 10
+  seconds; 'naturalgas' is a constant that 'units' knows about, equal
+  to the energy content per unit volume of natural gas.
+
+Q: Is Sun going to burn out soon?
+A: No, it only lost 0.02% of its mass since it lit up 4.5 billion years ago
+
+  You have: ( (1 kW / m2 ) * 4 pi sundist2 / c2 ) 4.5 billion year / sunmass 
+  You want: percent
+  * 0.022339361
+
+  Explanation: I use the solar energy flux on Earth's surface (1 kW/m^2); 
+  over the entire sun-centered sphere containing Earth, this amounts to
+: 1 kW/m2 * 4 pi sundist^2 Watts. Sun is about 4.5 billion years old, and
+  E=m c^2, so we can calculate the mass Sun lost in that time, and take it
+  as a percentage of the entire sun mass. 'sunmass' and 'sundist' are constants
+  known to the 'units' program. By the way, 20 MW * 6 weeks / c2 equals 0.8 g;
+  c2 is a syntactical shortcut 'units' uses for c^2 (exponentiation).
+
+Q: How long would it take to transfer 100 GB over a modem: 
+A: about half a year (I could have asked directly for the result in years, of course)
+
+  You have: 100 GB / 56 kbps
+  You want: days
+  * 165.34392
+

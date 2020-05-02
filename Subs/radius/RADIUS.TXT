@@ -1,0 +1,108 @@
+	If you tilt an endmill off vertical and then use it to cut a shallow
+groove in a workpiece, it will cut a radiused groove with a radius different
+from the half-diameter of the endmill.  Machinists use this trick to cut
+odd-sized radii when a cutter of the required diameter is not to hand.  A
+typical application might be recessing the bottom of rifle scope mounts to fit
+a barrel/receiver radius.
+
+	The calculations that relate groove radius and depth, endmill diameter
+and tilt off vertical are complicated and non-intuitive.  Thankfully, Steve
+Horace has beaten the problem to death.  In his writeup below, Steve supplies
+three methods of making the required calculations.  I've programmed the most
+complex (and most accurate) third method.  As a check it calculates, internally, the
+width of the cut and solves Steve's second relation.  The first method is
+trivial enough to carry out on a scientific calculator and requires no program.
+
+	Questions regarding the technique should be addressed to Steve.  He's
+the expert.  Questions regarding the program itself should be addressed to me
+(mklotz@alum.mit.edu).
+
+	For those of you who have back issues of HSM (Home Shop Machinist
+magazine), pg.10 of the May/June 1988 issue has a treatise on deriving Steve's
+second relation.
+
+===========================================================================
+
+Listed below are three methods for getting a non-standard radius from a mill
+cutter.  
+
+The first is for a rough approximation, the second for a closer approximation,
+and the third for setting the error you are willing to accept.
+
+* denotes multiplication, / denotes division, [] denotes expotientals (squares
+and square roots),
+() and {} denote groupings of operators
+
+Method 1:R=radius desired, r=radius of cutter, R must be greater than r 
+Formula: r/R = sine of angle from vertical to cutter axis
+
+Method 2: R = radius desired, r = radius of cutter, W = half-width of cut, R
+must be greater than r
+
+         R-(R[2]-W[2])[1/2]
+Formula: ------------------- = sine of angle from vertical to cutter axis
+         r-(r[2]-W[2])[1/2]
+
+Method 3: First the deviation from the ideal radius must be defined, and then
+the  depth of the cut, and the ideal radius desired.  
+
+Let E = error allowable in cut, D = depth of cut, R = radius desired, alpha =
+angle from  vertical to set cutter, and r = radius of cutter.  Find alpha and
+r with D,R and E known.    All dimensions in inches and decimal inches.
+
+Calculate D from the geometry of the job.  
+
+
+Formula 1:
+                            D/r 
+sin alpha = ----------------------------------   = sine of angle from vertical
+            1-{1-2*(R*D/r[2]) + (D/r)[2]}[1/2]        to  cutter axis 
+                           
+
+Formula 2
+               2 + (D/R)*{(1/sin[2]alpha) -1} 
+      r = R* {--------------------------------} =     exact radius of cutter
+                         (2/sin alpha)                at minimum angle alpha
+
+Formula 3: 
+
+E = (R/8)*(D[2]/R[2])*{(1/sin[2] alpha) -1}  =  error in radius 
+
+Formula 4:
+                          1
+sin alpha = ------------------------------  = sin of minimum angle of
+           {1 + 8*(E/R)*(R[2]/D[2])}[1/2]     inclination at specified error
+
+
+Procedure: Select the D, R and E for the job.  E is calculated from the width
+and radius of the cut.
+
+Next, calculate an angle using formula 4.
+
+Then, use Formula 2 to find the cutter radius for that angle.  It will
+normally not be a  standard size. 
+
+Now, select an available cutter larger than the size found, but smaller than
+the radius desired.  
+
+Compute the new angle alpha for the available cutter using Formula 1. 
+
+Formula 3 will calculate the exact error if needed.
+
+When to use which method depends on the accuracy required and tools available.
+If a tool close  to the desired size is available, either method 1 or 2 will
+give good results.  If the need is  for a 6" radius and  the largest cutter is
+3.5" radius, method 3 will give best results.
+
+Set up the work in the mill at the angle required and cut until the full
+surface is radiused.   Be careful to be on center before cutting, and to have
+the work level left to right.
+
+Horace K. B. "Steve" Steven, Jr.
+Engineer, Surface Ship Test Section
+Code 223, Bldg 19, NNSY
+SUPSHIP Portsmouth, VA 23709
+email: StevenHK@supship.navy.mil, Phone: 757 396 4001 x 2113
+FAX 757 396 4055, efax 208 379 9699
+Home email: hsteven@cavtel.net
+

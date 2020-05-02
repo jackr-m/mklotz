@@ -1,0 +1,12 @@
+[General]
+Analysis Type=Bolt Group
+ 
+[Analysis Data]
+Analysis Title=Verification Check
+Load Case Title=Case 02
+Number of Bolts=4
+Bolt 1=0.0000,0.0000,0.0000,1,1,1,0,0
+Bolt 2=1.0000,0.0000,0.0000,1,1,1,0,0
+Bolt 3=1.0000,1.0000,0.0000,1,1,1,0,0
+Bolt 4=0.0000,1.0000,0.0000,1,1,1,0,0
+Applied Load=0.25,0.25,3,0,4,0,0,0

@@ -1,0 +1,68 @@
+I wrote this program in 1990 when CAD was starting to be employed and we
+were using a CNC pipe bending machine. If was often found that we needed to
+convert pipe shapes from 3 dimensional XYZ coordinates to YBC bend data and
+vice versa. It was written in Quick Basic and runs as a DOS program or in a
+Windows shell. It may be of use to someone else as it can be used to
+calculate the true angle between any three coordinate points if required.
+The graphical display leaves a lot to be desired but gives some idea of the
+shape being looked at. I never bothered with an edit function as there is
+only a small amount of data to be entered for any shape.
+
+Typical uses would be for hand bending a pipe to suit a path that is
+defined as coordinates such as may be obtained from a CAD drawing or hand
+sketch. This will simplify those cases where the pipe shape is not flat but
+is 3 dimensional and the calculations get tricky.
+
+Since then we have upgraded our pipe bending machine and this program was
+replaced with an Excel spread sheet that takes in coordinates and produces
+bend data but not the other way round. It also checks for potential
+problems with the bent part hitting the machine or not enough distance
+between bends to allow tooling to grab the pipe for the next bend. I have
+not included this spreadsheet as it is far more specialist in nature and
+would not be of much use to other people.
+
+If you feel that this program is worthy of inclusion on your web site
+please feel free to add it to your list of free software. I think it runs
+without any additional files being needed in the folder but I can't
+remember for certain. It runs under XP as is.
+
+Martin Connelly
+Industrial Engineer
+Siemens
+Lincoln
+UK
+
+YBC are machine axes, translations are XYZ as most people know who have
+mills with coordinate tables. The rotations about these axes are ABC. The
+movements made by a pipe bending machine when making a bend are distance
+between bends (DBB), plane of bend (POB) and degree of bend (DOB). The
+distance between bends is produced when the machine moves along the Y axis,
+the degree of bend is made by a rotation about the Y axis, B, and the bend
+is a rotation about the Z axis, C. Hence YBC are CNC machine movements
+required to produce a bend. The shape of a pipe can be defined as a
+collection of DBB, POB and DOB but a small error in an angle at the
+beginning can result in a large error at the other end. Alternatively a
+pipe can be defined as a set of XYZ coordinates. These start at the end of
+the pipe's centre line and are the intersections of the extended
+centrelines of each straight section up to the other end.
+
+A basic pipe may be an 8" straight, a 90 degree bend at 2" centre line
+radius and another 8" straight. This is the form of YBC data. The same
+parts as coordinates would start off as 0,0,0 - 0,10,0 - 10,10,0.  By
+convention the first straight length goes along the Y axis and the first
+bend is in the XY plane. The advantage of coordinates is that they can be
+pulled straight out of CAD and the radius of the bend does not change the
+pipe's overall shape or size. The disadvantage is that they are hard for
+most people to visualise as they seem to be just a set of numbers.
+
+What this program allows is for someone to create a pipe shape as a set of
+coordinates in 3D then convert it into YBC data which will allow it to be
+visualised or alternatively bent by hand.  Imagine you are building a small
+steam engine and your pipe needs to go up 2", then right and up 1" and 1.4"
+and then the last bend goes down,right and towards you 2",1" and 3". The
+first bend is easy, 90 degrees and the distance to that first bend is also
+easy, make it long and cut to length afterwards. But what about the
+distance to the second bend? Its plane of bend and degree of bend are also
+tough calculations. This program will turn out the bend data to make this
+part first time with out a lot of trial and error.
+

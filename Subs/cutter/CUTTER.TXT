@@ -1,0 +1,14 @@
+Johan (Joe) Smit of South Africa helped simplify the process of making cutters
+to make gears.  He took the calculations from an article in "Model Engineers'
+Workshop" - Making Gear Cutters an Update, No. 41, March/April 1997 - and
+incorporated them into a Visual Basic program.
+
+Joe didn't provide any writeup but rather recommends the excellent treatise on
+the subject written by John Stevenson.  Said writeup can be found at:
+
+		www.metalwebnews.com/howto/gear/gear1.html
+
+If you have questions, comments or corrections, direct them to Joe.  His email
+address is:
+			joey2000@webmail.co.za
+

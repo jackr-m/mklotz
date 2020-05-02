@@ -1,0 +1,22 @@
+Boltcircle specification:
+Radius of bolt circle = 1.0000
+Bolt hole diameter = 0.5000
+Spacing between hole edges = 0.0176
+Angular offset of first hole = 0.0000 deg
+X offset of bolt circle center = 0.0000
+Y offset of bolt circle center = 0.0000
+
+HOLE       ANGLE     X-COORD     Y-COORD
+
+   1      0.0000      1.0000      0.0000
+   2     30.0000      0.8660      0.5000
+   3     60.0000      0.5000      0.8660
+   4     90.0000     -0.0000      1.0000
+   5    120.0000     -0.5000      0.8660
+   6    150.0000     -0.8660      0.5000
+   7    180.0000     -1.0000     -0.0000
+   8    210.0000     -0.8660     -0.5000
+   9    240.0000     -0.5000     -0.8660
+  10    270.0000      0.0000     -1.0000
+  11    300.0000      0.5000     -0.8660
+  12    330.0000      0.8660     -0.5000

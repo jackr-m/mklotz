@@ -1,0 +1,186 @@
+
+Analysis Results
+
+
+Analysis Title = Test Model with 8 bolts
+
+
+Positive Directions are:-
+	+X Aft
+	+Y Starboard
+	+Z Up
+
+
+Position of Applied Load
+	X =        0.500
+	Y =        0.500
+	Z =        0.500
+
+
+Loads Due to Unit Applied Load in each Direction at X     0.500, Y     0.500, Z     0.500
+
+Attachment     Aft (+X)      Starboard (+Y)             Up (+Z)
+
+   1x            0.1250              0.0000              0.0000
+    y            0.0000              0.1250              0.0000
+    z            0.0000              0.0000              0.1250
+   2x            0.1250              0.0000              0.0000
+    y            0.0000              0.1250              0.0000
+    z            0.0000              0.0000              0.1250
+   3x            0.1250              0.0000              0.0000
+    y            0.0000              0.1250              0.0000
+    z            0.0000              0.0000              0.1250
+   4x            0.1250              0.0000              0.0000
+    y            0.0000              0.1250              0.0000
+    z            0.0000              0.0000              0.1250
+   5x            0.1250              0.0000              0.0000
+    y            0.0000              0.1250              0.0000
+    z            0.0000              0.0000              0.1250
+   6x            0.1250              0.0000              0.0000
+    y            0.0000              0.1250              0.0000
+    z            0.0000              0.0000              0.1250
+   7x            0.1250              0.0000              0.0000
+    y            0.0000              0.1250              0.0000
+    z            0.0000              0.0000              0.1250
+   8x            0.1250              0.0000              0.0000
+    y            0.0000              0.1250              0.0000
+    z            0.0000              0.0000              0.1250
+
+Sum
+    x            1.0000              0.0000              0.0000
+    y            0.0000              1.0000              0.0000
+    z            0.0000              0.0000              1.0000
+
+
+Residual Rotational Moments
+               Residual Moment due to load in each Direction
+About          Aft (+X)      Starboard (+Y)             Up (+Z)
+X Axis           0.0000              0.0000              0.0000
+Y Axis           0.0000              0.0000              0.0000
+Z Axis           0.0000              0.0000              0.0000
+
+
+Attachment Positions (X, Y & Z) and Stiffnesses in each Axis (fx, fy & fz)
+
+Attachment       X           Y           Z           fx          fy          fz
+
+   1             0.000       0.000       0.000      1.0000      1.0000      1.0000
+   2             1.000       0.000       0.000      1.0000      1.0000      1.0000
+   3             1.000       1.000       0.000      1.0000      1.0000      1.0000
+   4             0.000       1.000       0.000      1.0000      1.0000      1.0000
+   5             0.000       0.000       1.000      1.0000      1.0000      1.0000
+   6             1.000       0.000       1.000      1.0000      1.0000      1.0000
+   7             1.000       1.000       1.000      1.0000      1.0000      1.0000
+   8             0.000       1.000       1.000      1.0000      1.0000      1.0000
+
+
+Definition of Bolt Axial Direction and Shear Plane
+
+Attachment      Axial Direction   Shear Plane
+
+   1              Not Defined     Not Defined
+   2              X Axis          YZ Plane
+   3              Y Axis          XZ Plane
+   4              Z Axis          XY Plane
+   5              Not Defined     Not Defined
+   6              X Axis          YZ Plane
+   7              Y Axis          XZ Plane
+   8              Z Axis          XY Plane
+
+
+Calculation of Attachment CG's in each plane
+
+Attachment      fx(y)       fx(z)       fy(x)       fy(z)       fz(x)       fz(y)
+
+   1             0.000       0.000       0.000       0.000       0.000       0.000
+   2             0.000       0.000       1.000       0.000       1.000       0.000
+   3             1.000       0.000       1.000       0.000       1.000       1.000
+   4             1.000       0.000       0.000       0.000       0.000       1.000
+   5             0.000       1.000       0.000       1.000       0.000       0.000
+   6             0.000       1.000       1.000       1.000       1.000       0.000
+   7             1.000       1.000       1.000       1.000       1.000       1.000
+   8             1.000       1.000       0.000       1.000       0.000       1.000
+ Sum             4.000       4.000       4.000       4.000       4.000       4.000
+
+For Mx in yz-plane:       For Mz in xy-plane:       For My in xz-plane:
+
+zbar =            0.500   xbar =            0.500   xbar =            0.500
+ybar =            0.500   ybar =            0.500   zbar =            0.500
+
+
+Calculation of Distances from Attachment CG's in each plane
+
+                      Mx                      My                      Mz
+Attachment    (y-ybar)    (z-zbar)    (x-xbar)    (z-zbar)    (x-xbar)    (y-ybar)
+
+   1            -0.500      -0.500      -0.500      -0.500      -0.500      -0.500
+   2            -0.500      -0.500       0.500      -0.500       0.500      -0.500
+   3             0.500      -0.500       0.500      -0.500       0.500       0.500
+   4             0.500      -0.500      -0.500      -0.500      -0.500       0.500
+   5            -0.500       0.500      -0.500       0.500      -0.500      -0.500
+   6            -0.500       0.500       0.500       0.500       0.500      -0.500
+   7             0.500       0.500       0.500       0.500       0.500       0.500
+   8             0.500       0.500      -0.500       0.500      -0.500       0.500
+
+
+Calculation of Components of r^2 for each plane
+
+                      Mx                      My                      Mz
+Attachment fy(z-zbr)^2 fz(y-ybr)^2 fx(z-zbr)^2 fz(x-xbr)^2 fx(y-ybr)^2 fy(x-xbr)^2
+
+   1             0.250       0.250       0.250       0.250       0.250       0.250
+   2             0.250       0.250       0.250       0.250       0.250       0.250
+   3             0.250       0.250       0.250       0.250       0.250       0.250
+   4             0.250       0.250       0.250       0.250       0.250       0.250
+   5             0.250       0.250       0.250       0.250       0.250       0.250
+   6             0.250       0.250       0.250       0.250       0.250       0.250
+   7             0.250       0.250       0.250       0.250       0.250       0.250
+   8             0.250       0.250       0.250       0.250       0.250       0.250
+ Sum                   4.000                   4.000                   4.000
+
+
+
+
+Load Case = 1lb -X Load Applied at centroid, with 2lb Y load and 3lb -Z load
+
+Actual Applied Load at X     0.500, Y     0.500, Z     0.500
+
+	FX =       -1.000
+	FY =        2.000
+	FZ =       -3.000
+
+
+Actual Attachment Loads
+
+Attachment          X                   Y                   Z
+
+   1            -0.1250              0.2500             -0.3750
+   2            -0.1250              0.2500             -0.3750
+   3            -0.1250              0.2500             -0.3750
+   4            -0.1250              0.2500             -0.3750
+   5            -0.1250              0.2500             -0.3750
+   6            -0.1250              0.2500             -0.3750
+   7            -0.1250              0.2500             -0.3750
+   8            -0.1250              0.2500             -0.3750
+
+
+Resolved Loads for Attachments with Undefined Orientations
+
+Attachment   XYZ Resultant        In XY Plane         In XZ Plane         In YZ Plane
+
+   1             0.4677              0.2795              0.3953              0.4507
+   5             0.4677              0.2795              0.3953              0.4507
+
+
+Resolved Loads for Attachments with Defined Orientations
+
+Attachment    Axial Load          Shear Load
+
+   2            -0.1250              0.4507
+   3             0.2500              0.3953
+   4            -0.3750              0.2795
+   6            -0.1250              0.4507
+   7             0.2500              0.3953
+   8            -0.3750              0.2795
+
+

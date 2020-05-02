@@ -1,0 +1,39 @@
+Dale Holt, in Colorado, wrote a very useful command line expression evaluator
+which he was kind enough to contribute to the pool of free programs.  It
+incorporates two important capabilities lacking in Morley's Expression
+Evaluator.  The ability to iteratively solve equations is extremely handy as is
+the ability to evaluate an expression for multiple values of a variable without
+the need to keep reentering the expression.  Reproduced below are Dale's
+instructions.  Invoking the program with no arguments will write these
+instructions to the screen.
+
+----------------------------------------------------------------------------
+
+The algebraic expression evaluator by Dale Holt, copyright 1993.
+This program takes a standard algebraic expression and calculates
+an answer.  Version 3.1  2004 January 22
+
+The functions supported are sin, cos, tan, atan, acos, asin,
+sinh, cosh, tanh, ln, log, exp, sqrt, abs, int, and frac.
+Either ** or ^ may be used for exponentiation.
+PI or pi is acceptable for 3.14159265358979323846
+The trigonometric functions operate with degrees, not radians.
+Parentheses may be used to group terms.  The symbols ^ and * may
+have to be quoted or escaped to get past the UNIX shell.
+The entire math expression may be quoted, if desired.
+The use of (, ), [, ], {, } are acceptable as parentheses.
+Commas will be ignored.
+
+If variables are included, then you will be prompted for values
+to be used and the expression will be evaluated with those values.
+This mode will end when a blank value is entered.
+
+Equations will be solved if entered with an x, y, or z and an equal sign.
+The starting value for a solution search is entered by appending from number.
+Examples:  x = 1 + sin(x)
+           y / 5 + exp(y^2) - 30 = 0
+           x+sin(x) = 4 from 5
+Please note that a large error means that a solution was not found!
+
+Commas will not be placed in the output if the executable is named mathnc
+

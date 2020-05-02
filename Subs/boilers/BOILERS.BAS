@@ -1,0 +1,586 @@
+
+'________ MODEL STEAM LOCOMOTIVE BOILER DESIGN PARAMETER GENERATOR __________
+'       OCTOBER 13, 1993                                  by  E.V.RUTKOWSKI
+'----------------------------------------------------------------------------
+	CLEAR: SCREEN 9: PALETTE: KEY OFF: CLS
+        e=2.7182818
+	ON KEY(10) GOSUB ENDER :KEY (10) ON '*********** ENABLES BREAKOUT
+'---------------------------- HOUSE KEEPING --------------------------------
+
+	SCALEF=350/640		'SCREEN Y SCALE FACTOR
+	RANDOMIZE TIMER
+'----------------------------------------------------------------------------
+	DIM GAGE(36) 	'BIRMINGHAM / STUB'S IRON WIRE OR COPPER TUBE GAGE
+	FOR N=1 TO 36
+		READ GAGE(N)
+	NEXT N
+	DATA .3,.284,.259,.238,.220,.203,.180,.165,.148,.134
+	DATA .120,.109,.095,.083,.072,.065,.058,.049,.042,.035
+	DATA .032,.028,.025,.022,.020,.018,.016,.014,.013,.012
+	DATA .010,.009,.008,.007,.005,.004
+
+	DIM MSCRW(12,3) 'MACHINE SCREWS, NAT'L FINE      (1) THREADS/IN
+	FOR M= 1 TO 12                                  '(2) MAJOR DIA.
+		READ MSCRW(M,1),MSCRW(M,2),MSCRW(M,3)   '(3) ROOT DIA.
+	NEXT M
+DATA 72,.073,.056,64,.086,.067,56,.099,.077,48,.112,.086,44,.125,.097
+DATA 40,.138,.107,0,0,0,36,.164,.130,0,0,0,32,.190,.152,0,0,0,28,.216,.172
+
+'----------------------------------------------------------------------------
+	DIM BOLT$(10)   'BOLTS, NATIONAL FINE
+	FOR B= 1 TO 10
+		READ BOLT$(B)
+	NEXT B
+DATA "1/4","5/16","3/8","7/16","1/2","9/16","5/8","3/4","7/8","1"
+
+	DIM BOLT(10,3) 	'BOLTS 1/4" TO 1" FINE THREAD SERIES (1) THREADS/IN
+	FOR B= 1 TO 10                                      '(2) MAJOR DIA.
+		READ BOLT(B,1),BOLT(B,2),BOLT(B,3)          '(3) MINOR DIA.
+	NEXT B
+DATA 28,.25,.204,24,.312,.258,24,.375,.321,20,.438,.373,20,.500,.435
+DATA 18,.563,.490,18,.625,.553,16,.750,.669,14,.875,.782,14,1.000,.907
+
+'----------------------------------------------------------------------------
+	DIM PARAM$(50) 		'Parameter text
+	PARAM$(2)="Boiler Pressure, psi - "
+	PARAM$(3)="Boiler outer diameter, inches - "
+	PARAM$(4)="Boiler cylindrical wall thicknes, inches - "
+	PARAM$(5)="Recommended flue sheet thickness, inches - "
+	PARAM$(6)="Boiler tube inside diameter, inches - "
+	PARAM$(7)="Superheater tube inside diameter, inches - "
+	PARAM$(8)="Superheater flue tube diameter, inches - "
+	PARAM$(9)="Stay bolt size - "
+	PARAM$(10)="Stay-to-stay spacing (pitch), inches - "
+        PARAM$(11)="Steam Temp., deg. F - "
+        PARAM$(12)="Steam Enthalpy, BTU per lb - "
+	PARAM$(13)="Steam Sp.Vol., cubic in/cubic in H2O - "
+
+'----------------------------------------------------------------------------
+	DIM PARAM(50)	'Parameter values
+'STEEL
+'	PARAM(1,50)=40000	'Ultimate tensile strength for mild steel
+'				'tube butt-welded
+'	PARAM(1,49)=8		'Safety factor
+'	PARAM(1,48)=1		'Temperature degradation factor
+'COPPER
+'	PARAM(2,50)=32000	'Ultimate tensile strength for copper
+'	PARAM(2,49)=8		'Safety factor
+'	PARAM(2,48)=.8		'Temperature degradation factor
+
+'----------------------------------------------------------------------------
+	DIM SCALE$(6)
+	SCALE$(1)="1/4 in./foot or `O' gauge"
+	SCALE$(2)="#1 gauge"
+	SCALE$(3)="1/2 in./foot or 17/32 in./foot or `G' gauge"
+	SCALE$(4)="3/4 in./foot"
+	SCALE$(5)="1 in./foot"
+	SCALE$(6)="1 1/2 in./foot"
+
+'----------------------------------------------------------------------------
+	DIM SCLD(6)
+	SCLD(1)=.250
+	SCLD(2)=.394
+	SCLD(3)=.500
+	SCLD(4)=.750
+	SCLD(5)=1.00
+	SCLD(6)=1.50
+
+'------------------------ NOMINAL BOILER PRESSURES --------------------------
+	DIM PRESS(6)
+	PRESS(1)=45: PRESS(2)=60: PRESS(3)=70
+	PRESS(4)=80: PRESS(5)=90: PRESS(6)=100
+
+'---------------------------------- CONSTANTS -------------------------------
+	PI=3.14159
+	RAD=57.29578		'DEGREES PER RADIAN
+	SCF=.74			'SCREEN Y TO X DISTANCE CORRECTION FACTOR
+'------------------------------ IF ERROR --------------------------------------
+	'ON ERROR GOTO CHECKUP
+'---------------------------- SETUP THE DISPLAY -----------------------------
+	CLS
+	GOSUB DISP
+
+COLOR 2
+	LOCATE 3,20:PRINT "MODEL STEAM LOCOMOTIVE BOILER DESIGN AID";
+COLOR 7
+	LOCATE 4.29: PRINT "by E. V. Rutkowski";
+	LOCATE 6,12:PRINT "   This program is designed to generate files of design";
+	LOCATE 7,12:PRINT "parameters for model steam locomotive boilers. Initially,";
+	LOCATE 8,12:PRINT "suggested parameters are displayed. These can be";
+	LOCATE 9,12:PRINT "modified and when you are satisfied with the values the";
+	LOCATE 10,12:PRINT "results may be printed for reference. "
+	LOCATE 12,12:PRINT "   Design data for either steel or copper boiler constr-";
+	LOCATE 13,12:PRINT "construction are provided.";
+COLOR 12
+	LOCATE 15,12:PRINT "THE DESIGN VALUES CALCULATED BY THIS PROGRAM ARE SUGG-";
+	LOCATE 16,12:PRINT "ESTED VALUES ONLY AND SHOULD BE EVALUATED BY THE BUILDER.";
+	LOCATE 18,12:PRINT "THE AUTHOR ASSUMES NO RESPONSIBILITY FOR THE PERFORMANCE";
+	LOCATE 19,12:PRINT "OF MODEL BOILERS BASED ON THESE SUGGESTED PARAMETERS";
+COLOR 7
+	GOSUB CLR25
+	PRINT "PRESS ANY KEY TO START THIS PROGRAM";
+	GOSUB WATE
+'---------------------------- PROGRAM ---------------------------------------
+START:
+	GOSUB KLEER
+	LOCATE 2,14: PRINT "Data for this program were adapted form the following:;
+
+	LOCATE 4,10: PRINT "(1) `MANUAL OF MODEL STEAM LOCOMOTIVE CONSTRUCTION',(Third Edition),";
+	LOCATE 5,15: PRINT "1969 by: Martin Evans, Model & Allied Publications Ltd., 13/35";
+	LOCATE 6,15: PRINT "Bridge Street, Hemel Hempstead, Hertfordshire, England";
+
+	LOCATE 8,10: PRINT "(2) `MODEL LOCOMOTIVE BOILERS',1969,by: Martin Evans,";
+	LOCATE 9,15: PRINT "Model & Allied Publications Ltd., 13/35 Bridge Street,";
+	LOCATE 10,15: PRINT "Hemel Hempstead, Hertfordshire, England";
+
+	LOCATE 12,10: PRINT "(3) `SO YOU WANT TO BUILD A LIVE STEAM LOCOMOTIVE', 1974";
+	LOCATE 13,15: PRINT "by:Joseph Foster Nelson, Wildwood Publications, Box 286;
+	LOCATE 14,15: PRINT "Cadillac, Michigan 49601;
+
+	LOCATE 16,10: PRINT "(4) `THE BEST OF LIVE STEAM, VOL 2',1987, Editor Joe D. Rice";
+	LOCATE 17,15: PRINT "Wildwood Publications, Box 629, Traverse City, Michigan 49685;
+
+	LOCATE 19,10: PRINT "(5) `MACHINERY'S HANDBOOK', Industrial Press ";
+
+	LOCATE 21,10: PRINT "(6) `MODEL BOILERS & BOILERMAKING', 1972, by: K.N. Harris";
+	LOCATE 22,15: PRINT "Model & Allied Publications Ltd., 13/35 Bridge Street,;
+	LOCATE 23,15: PRINT "Hemel Hempstead, Herts.  England;
+	GOSUB CLR25
+	PRINT "PRESS ANY KEY TO CONTINUE";
+	GOSUB WATE
+START2:
+	KEY(10) ON
+	GOSUB KLEER
+	GOSUB CLR25
+COLOR 10
+	LOCATE 2,23:PRINT "MODEL STEAM LOCOMOTIVE BOILER DESIGN";
+COLOR 7
+	FOR N=1 TO 6
+		LOCATE 5+2*N,12
+		PRINT "(";N;") - ";SCALE$(N)
+	NEXT N
+COLOR 4
+	LOCATE 23,17: PRINT"PRESS KEY F(10) AT ANY TIME TO QUIT THIS PROGRAM";
+DATA1:
+COLOR 7
+	GOSUB CLR25
+	PRINT "ENTER THE NUMBER FOR THE SCALE YOU ARE USING - ";
+	GOSUB WATE
+	SCALE=VAL(A$)
+	IF SCALE>6 OR SCALE<1 THEN ERMSG$="A NUMBER FROM 1 TO SIX PLEASE":_
+	GOSUB ERRMSG: GOTO DATA1
+	SCALEDIM=SCLD(SCALE)	'SCALE DIMENSION INCHES/FOOT
+	GOSUB KLEER
+COLOR 10
+	LOCATE 2,23:PRINT "MODEL STEAM LOCOMOTIVE BOILER DESIGN";
+        GOSUB DRAWBOIL
+COLOR 15
+	LOCATE 3,3 '(35-LEN(SCALE$(SCALE))/2)
+	PRINT "SCALE - ";SCALE$(SCALE);
+PICKMETAL:
+COLOR 7
+	GOSUB CLR25
+	PRINT "Do you want to design a STEEL or COPPER boiler? - ";
+	GOSUB WATE
+	IF A$<>"C" AND A$<>"c" AND A$<>"S" AND A$<>"s" THEN ERMSG$="`C' OR `S' ONLY PLEASE":_
+		GOSUB ERRMSG: GOTO PICKMETAL
+	GOSUB CLR25
+	IF A$="C" AND SCALE>4 OR A$="c" AND SCALE>4 THEN GOSUB CHECKMAT
+	IF A$="S" OR A$="s" THEN GOSUB STEEL
+	IF A$="C" OR A$="c" THEN GOSUB COPPER
+
+'--------------------------- BOILER WALL THICKNESS ---------------------------
+	LOCATE 4,3: PRINT PARAM$(1)
+	LOCATE 5,3: PRINT "Ult. tensile stength - ";PARAM(50);"psi";
+	LOCATE 6,3: PRINT "Safety Factor - ";PARAM(49);
+	STRESSW=PARAM(48)*PARAM(50)/PARAM(49)	'WORKING STRESS
+COLOR 14
+	LOCATE 23,12:PRINT "SUGGESTED BOILER PRESSURE - ";PRESS(SCALE);"psi";
+DATA2:
+COLOR 7
+	GOSUB CLR25
+	INPUT; "ENTER YOUR WORKING BOILER PRESSURE IN LB/SQ.IN. - ",P
+	GOSUB CLR25
+	IF P=0 THEN P=PRESS(SCALE)
+	IF P<1.5*PRESS(SCALE) THEN GOTO CONT1
+	INPUT; "ARE YOU SURE? - ",A$
+	IF A$="Y" OR A$="y" THEN GOTO CONT1 ELSE GOTO DATA2
+CONT1:
+	LOCATE 23,11: PRINT SPC(59);
+	PARAM(2)=P
+        PARAM(11)=INT(130.0558*4.3014^(1/P)*P^(.2044))          'STEAM TEMPERATURE
+        PARAM(12)=INT(1151.0029*e^(((LOG(P)-1.1863)^2)/408.8966))'ENTHALPY
+        PARAM(13)=INT(1/((-1.31244E-8*(P-1420.5062)^2)+.0271))	'SPECIFIC VOL.
+	LOCATE 7,3:PRINT PARAM$(2);PARAM(2);
+
+DATA3:
+	GOSUB CLR25
+	INPUT; "ENTER THE BOILER OUTER DIAMETER IN INCHES - ",PARAM(3)
+	LOCATE 8,58: PRINT "Boiler OD - ";PARAM(3);" in"; '*****************
+	WALL1=PARAM(2)*PARAM(3)/(2*STRESSW)
+	FOR N= 1 TO 36
+		IF GAGE(N)>=WALL1 THEN WALL2=GAGE(N):RECGAGE=N
+	NEXT N
+COLOR 14
+	LOCATE 22,12:PRINT "CALCULATED WALL THICKNESS - ";
+	PRINT USING ".###";WALL1;: PRINT "inches";
+	LOCATE 23,12:PRINT "MIN. RECOMMENDED TUBE WALL - ";RECGAGE;"GAGE";
+	PRINT "(";WALL2;"inches)";
+DATA4:
+COLOR 7
+	GOSUB CLR25
+	INPUT; "INPUT A WALL THICKNESS OR JUST PRESS <ENTER> TO ACCEPT RECOMMENDED VALUE - ",TWALL
+	IF TWALL=0 THEN TWALL=WALL2
+	PARAM(4)=TWALL
+	FOR N= 1 TO 36
+		IF GAGE(N)>=TWALL THEN NEWGAGE=N
+	NEXT N
+	LOCATE 22,11: PRINT SPC(59):LOCATE 23,11: PRINT SPC(59)
+	LOCATE 9,55: PRINT "Boiler wall - ";PARAM(4);" in"; '**************
+	LOCATE 10,55: PRINT "(Use ";NEWGAGE;" gage)";
+	GOSUB CLR25
+	HW1=2*PARAM(4) 			'END PLATES TWICE TUBE WALL
+	FOR N= 1 TO 36
+		IF GAGE(N)>=HW1 THEN NEWENDGAGE=N
+	NEXT N
+	FT=HW1/(1/64)
+	FT=(INT(FT)+1)/64
+        FT$=LEFT$(STR$(FT),5)
+	PARAM(5)=VAL(FT$)
+	LOCATE 11,47:PRINT "Flue sheets -";PARAM(5);" in":
+        PRINT
+	LOCATE 12,47: PRINT "(Use gage ";NEWENDGAGE;")";
+
+DATA5:
+	GOSUB CLR25
+	INPUT; "ENTER THE APPROXIMATE DISTANCE BETWEEN TUBE PLATES, inches - ",TPD
+	IF TPD>2*PARAM(3) AND TPD<5*PARAM(3) THEN GOTO CONT2
+	GOSUB CLR25:PRINT "ARE YOU SURE? (Y)es / (N)o ";
+	GOSUB WATE
+	IF A$="Y" OR A$="y" GOTO CONT2
+	GOTO DATA5
+
+CONT2:  '------------------------- BOILER TUBE SIZE ------------------------
+	GOSUB CLR25
+COLOR 15
+	LOCATE 14,45:PRINT "- SUGGESTED DESIGN DETAILS -";
+COLOR 7
+	TUBE=(TPD/65)^.5
+	N=TUBE/(1/32):IF ABS(INT(N)/N)<.05 THEN N=INT(N) ELSE N=INT(N)+1
+	TUBE=INT(1000*N/32)/1000
+	PARAM(6)=TUBE
+	LOCATE 15,38: PRINT "Boiler tube ID - ";PARAM(6);" in";
+
+	'------------------------- SUPERHEATER TUBE SIZE -------------------
+	SHTUBE=-3E-5 + .559*SCALEDIM
+	N=SHTUBE/(1/32):IF ABS(INT(N)/N)<.05 THEN N=INT(N) ELSE N=INT(N)+1
+	SHTUBE=INT(1000*N/32)/1000
+	PARAM(7)=SHTUBE
+	LOCATE 16,38: PRINT "Superheater tube ID - ";PARAM(7);" in";
+
+	'------------------ SUPERHEATER FLUE TUBE SIZE ---------------------
+	SHTUBE=1.77+.78*LOG(SHTUBE)
+	A=INT(SHTUBE/(1/32))
+	SHTUBE=A*(1/32): SHTUBE=INT(1000*SHTUBE)/1000
+	PARAM(8)=SHTUBE
+	LOCATE 17,38: PRINT "Superheater flue ID - ";PARAM(8);" in";
+
+	'----------------------- BOILER STAY DIAMETER ----------------------
+	BSTAY=.0829*2.718^(6.878*PARAM(5))
+	BSTAY=INT(1000*BSTAY)/1000
+	'------------------- TEST MACHINE SCREWS ---------------------------
+	FOR TESTM=1 TO 12
+		IF BSTAY<MSCRW(TESTM,3) THEN LOCATE 18,38:_
+		PRINT "Stay bolts - ";TESTM;"-";MSCRW(TESTM,1);:_
+		PARAM(9)=MSCRW(TESTM,3):GOTO CONT4
+	NEXT TESTM
+	'----------------------- TEST BOLTS --------------------------------
+	FOR TESTB= 1 TO 10
+		IF BSTAY<BOLT(TESTB,3) THEN GOTO CONT3
+	NEXT TESTB
+	IF TESTB>10 THEN TESTB=10
+CONT3:
+	'LOCATE 20,45: PRINT "Size - ";BOLT$(TESTB)
+	'LOCATE 21,45: PRINT BOLT(TESTB,1);
+	PARAM(9)=BOLT(TESTB,3) '	ROOT DIAMETER
+	LOCATE 18,38:PRINT "Stay bolts - ";BOLT$(TESTB);"-";BOLT(TESTB,1);
+CONT4:
+	'------------------------ STAY-TO-STAY PITCH -------------------------
+	IF MATL=1 THEN MATL$="( Steel )" ELSE MATL$="( Bronze or monel )"
+	PRINT MATL$;
+	STAYAREA=(PI/4)*PARAM(9)^2 	'AREA OF STAY AT ROOT OF THREAD
+	STAYLOAD=STAYAREA*STRESSW		'ALLOWABLE STAY LOADING
+	PITCH=(STAYLOAD/PARAM(2))^.5
+	A=INT(PITCH/(1/64)):A=A*(1/64)
+	PITCH=INT(1000*A)/1000
+	PARAM(10)=PITCH
+	LOCATE 19,38: PRINT "Stay spacing - ";PARAM(10);" in";
+	'----------------------- STEAM PROPERTIES --------------------------
+COLOR 15
+	LOCATE 20,45: PRINT "- STEAM PROPERTIES -";
+COLOR 7
+        LOCATE 21,33: PRINT PARAM$(11);PARAM(11);
+        LOCATE 22,33: PRINT PARAM$(12);PARAM(12);
+	LOCATE 23,33: PRINT PARAM$(13);PARAM(13);
+
+	GOSUB CLR25
+	PRINT "To print a copy of all the data enter `P' or press any other key to continue ";
+	GOSUB WATE
+	GOSUB CLR25
+	IF A$="p" OR A$="P" THEN GOSUB PRINT1
+	GOTO ENDER
+
+CHECKMAT:
+	GOSUB CLR25
+	PRINT "STEEL IS MORE USUAL FOR BOILERS OF THIS SCALE IS THIS OK? (Y)es/(N)o-";
+	GOSUB WATE
+	IF A$="Y" OR A$="y" THEN A$="C":RETURN
+	IF A$="N" OR A$="n" THEN RETURN PICKMETAL
+	BEEP:GOTO CHECKMAT
+
+STEEL:
+	MATERIAL$="Steel"
+	PARAM(50)=40000		'Ultimate tensile strength for mild steel
+				'tube butt-welded
+	PARAM(49)=8		'Safety factor
+	PARAM(48)=1		'Temperature degradation factor
+	PARAM$(1)="Steel boiler"
+	MATL=1
+	A$=""
+	RETURN
+
+COPPER:
+	MATERIAL$="Copper"
+	PARAM(50)=32000		'Ultimate tensile strength for copper
+	PARAM(49)=8		'Safety factor
+	PARAM(48)=.8		'Temperature degradation factor
+	PARAM$(1)="Copper boiler"
+	MATL=2
+	A$=""
+	RETURN
+
+DISP: '--------------------- SETUP DISPLAY AREA ------------------------------
+	CLS
+COLOR 9
+	LOCATE 1,1:PRINT CHR$(201);STRING$(78,205);CHR$(187);
+	LOCATE 24,1:PRINT CHR$(200);STRING$(78,205);CHR$(188);
+	FOR L= 2 TO 23
+		LOCATE L,1:PRINT CHR$(186);
+		LOCATE L,80:PRINT CHR$(186);
+	NEXT L
+COLOR 1
+	LOCATE 2,3:PRINT CHR$(254);SPC(74);CHR$(254)
+	RETURN
+'_______________________ CLEARS WITHIN DISPLAY BORDERS ______________________
+KLEER:
+	FOR L=2 TO 23
+		LOCATE L,2: PRINT SPC(77);
+	NEXT L
+	RETURN
+'-------------------------------- PRINT PARAMETERS -------------------------
+'------------------------------ IF ERROR ------------------------------------
+	ON ERROR GOTO ERRMSG
+PRINT1:
+	LPRINT: LPRINT: LPRINT: LPRINT
+	LPRINT TAB(22) "MODEL STEAM LOCOMOTIVE BOILER DESIGN"
+	LPRINT TAB((35-LEN(SCALE$(SCALE))/2)) "SCALE - ";SCALE$(SCALE)
+	LPRINT TAB(10) PARAM$(1);" Ultimate tensile stength - ";PARAM(50);"psi"
+	LPRINT TAB(10) "Safety Factor - ";PARAM(49)
+	FOR P=1 TO 13
+		LPRINT TAB(10) PARAM$(P);PARAM(P)
+	NEXT P
+	LPRINT  : LPRINT
+	RETURN
+
+'------------------------------- CLEAR 25th LINE ----------------------------
+CLR25:
+	LOCATE 25,1:PRINT SPC(79);:LOCATE 25,1
+	RETURN
+'_________________________ WAIT FOR AN INPUT ________________________________
+WATE:
+	A$=""
+	WHILE A$=""
+		A$=INKEY$
+	WEND
+	RETURN
+
+'------------------------------ END OF PROGRAM ------------------------------
+ENDER:
+COLOR 7
+	KEY(10) OFF
+	GOSUB CLR25
+	GOSUB KLEER
+	LOCATE 10,15:PRINT "DO YOU WANT TO CONTINUE WITH ANOTHER BOILER DESIGN?"
+	GOSUB WATE
+	IF A$="Y" OR A$="y" THEN GOSUB KLEER: GOTO START2
+	CLS
+	CLR=12
+	LINE (144,96)-(216,108),CLR,BF
+	LINE (144,96)-(168,192),CLR,BF
+	LINE (144,138)-(180,150),CLR,BF
+	LINE (144,180)-(216,192),CLR,BF
+	LINE (252,96)-(276,192),CLR,BF
+	LINE (348,96)-(372,192),CLR,BF
+	FOR I= 0 TO 11
+        	LINE (264+I,96)-(348+I,192),CLR
+        NEXT I
+
+	LINE (408,96)-(426,192),CLR,BF
+	LINE (402,96)-(480,108),CLR,BF
+	LINE (402,180)-(480,192),CLR,BF
+	LINE (480,108)-(504,180),CLR,BF
+	FOR I=0 TO 23
+		LINE (480-I,96)-(505-I,108),CLR
+		LINE (480-I,192)-(504-I,180),CLR
+	NEXT I
+	DELAY 2
+END
+
+'---------------------------- ERROR MESSAGES --------------------------------
+OLDERRMSG:
+	BEEP
+	ERMSG$="ERROR NO. "+CHR$(ERR)+" HAS OCCURED!"
+	IF ERR=24 OR ERR=25 OR ERR=27 OR ERR=57 THEN ERMSG$=_
+		"CHECK YOUR PRINTER.  A HARWARE ERROR HAS OCCURRED!"
+	GOSUB CLR25
+COLOR 12
+	LOCATE 25,(3+(77-LEN(ERMSG$))/2):PRINT ERMSG$;
+	DELAY 3
+	GOSUB CLR25
+COLOR 7
+	PRINT "PRESS ANY KEY TO CONTINUE PRINTING.";
+	GOSUB WATE
+	GOSUB CLR25
+	RESUME CONT2
+
+'---------------------------- ERROR MESSAGES --------------------------------
+ERRMSG:
+	BEEP
+	GOSUB CLR25
+	LOCATE 25,1:PRINT CHR$(220);
+	CLRX=POINT(3,475)
+COLOR 12
+	LOCATE 25,(3+(77-LEN(ERMSG$))/2):PRINT ERMSG$; 'RESET COLOR
+	DELAY 3
+	GOSUB CLR25
+	COLOR CLRX	'RESTORE ORIGINAL COLOR
+	RETURN
+'----------------------------------------------------------------------------
+CHECKUP:
+	BEEP
+COLOR 12
+	IF ERR=24 OR ERR=25 OR ERR=27 OR ERR=57 THEN GOTO PRMESSG
+	GOSUB CLR25
+	PRINT "ERROR NO. ";ERR;" HAS OCCURED!";:STOP
+PRMESSG:
+	GOSUB CLR25
+	PRINT "CHECK YOUR PRINTER A HARDWARE ERROR HAS OCCURRED!";
+	DELAY 3
+	GOSUB CLR25
+	RESUME CHECKPR
+
+CHECKPR:
+COLOR 14
+	FOR B=1 TO 5
+		LOCATE 20,23:PRINT SPC(36);
+		DELAY .5
+		LOCATE 20,23:PRINT "MAKE SURE YOUR PRINTER IS TURNED ON!";
+		DELAY .5
+	NEXT B
+
+COLOR 1
+	LOCATE 23,23:PRINT " PRESS ANY KEY WHEN READY TO PRINT";
+	GOSUB CLR25
+COLOR 7
+	PRINT "IF REQUIRED, PRESS FUNCTION KEY(10) TO STOP PRINTING";
+	GOSUB WATE
+	LOCATE 20,1:PRINT SPC(79);
+	LOCATE 23,1:PRINT SPC(79);
+	LOCATE 25,1: PRINT SPC(79);
+	'GOTO DATAPRINT
+	GOTO ENDER
+
+'------------------------- DRAW A BOILER -----------------------------------
+DRAWBOIL:
+
+	LINE(200,280)-(80,280),7     	'BASE FRONT EDGE
+	LINE(160,240)-(280,240),7	'BASE BACK EDGE
+	LINE(160,240)-(80,280),7        'BASE LEFT EDGE
+	LINE(280,240)-(200,280),7       'BASE RIGHT EDGE
+	TILE$=CHR$(&H00,&H00,&HF0,&H00)
+	PAINT(180,260),TILE$,7
+
+	LINE(80,280)-(80,200),7		'LEFT SIDE WALL FRONT
+	LINE(160,160)-(160,240),7,,&H1111	'HIDDEN
+	LINE(280,240)-(200,280),7 	'RIGHT SIDE WALL
+	LINE(200,200)-(200,280),7      	'     "
+	LINE(200,200)-(280,160),7      	'     "
+	LINE(280,160)-(280,240),7      	'     "
+
+	CIRCLE(140,200),60,7,0,88/RAD	'BACK F'BOX WALL
+	CIRCLE(140,200),60,7,120/RAD,180/RAD	'BACK F'BOX WALL
+	CIRCLE(220,160),60,7,0,90/RAD	'BACK HEAD
+	FOR ANG=.4 TO 4.607 STEP .1
+		XPOS=(220+COS(ANG)*60): YPOS=160+SIN(ANG)*45  'i.e. 60*.75
+		PSET(XPOS,YPOS),7
+	NEXT ANG
+	CIRCLE(380,80),60,7,315/RAD,120/RAD 'FRONT HEAD
+	FOR ANG=1.222 TO 3.752 STEP .1
+		XPOS=(380+COS(ANG)*60): YPOS=80+SIN(ANG)*45  'i.e. 60*.75
+		PSET(XPOS,YPOS),7
+	NEXT ANG
+
+	CIRCLE(380,50),10,7		'TOP TUBE
+	CIRCLE(220,130),10,7
+	LINE(214,124)-(374,44),7
+	LINE(226,136)-(386,56),7
+
+	CIRCLE(410,60),10,2		'RIGHT MID TUBE
+	CIRCLE(250,140),10,10
+	LINE(416,66)-(256,146),2
+	LINE(404,54)-(244,134),10
+
+	CIRCLE(180,160),10,9		'LEFT TUBE
+
+	CIRCLE(190,140),10,10		'LEFT MID TUBE
+
+	CIRCLE(420,80),10,1     	'RIGHT TUBE
+	CIRCLE(260,160),10,9
+	LINE(426,86)-(266,166),1
+	LINE(414,74)-(254,154),9
+
+	CIRCLE(140,200),10,7		'SUPERHEATER TUBE
+	CIRCLE(380,80),10,4
+	LINE(130,196)-(229,147),4
+	LINE(229,147)-(374,73),4,,&HF0F0
+	LINE(130,214)-(240,159),4
+	LINE(240,159)-(384,86),4,,&HF0F0
+	CIRCLE(120,210),10,12,3.141,6.283
+	LINE(110,210)-(110,158),12
+	LINE(130,210)-(130,158),12
+	LINE(114,152)-(229,94),12
+	LINE(242,106)-(130,162),12
+	CIRCLE(236,100),10,12
+	CIRCLE(120,158),10,12,0,3.141
+
+
+	CIRCLE(380,80),20,7,4.276,3.141 	'SUPERHEATER FLUE TUBE
+	CIRCLE(220,160),20,7,4.276,3.141
+	LINE(364,70)-(204,150),7
+	LINE(236,170)-(250,163),7
+	LINE(250,163)-(396,90),7,,&HF0F0
+	CIRCLE(250,163),1,14
+
+	CIRCLE(240,93),30,7,0,3.141		'STEAM DOME
+	LINE(269,92)-(269,114),7
+	LINE(209,93)-(209,104),7
+	LINE(269,93)-(209,93),7
+	CIRCLE(235,152),60,7,.960,1.571
+
+	LINE(266,84)-(356,39),7			'OUTER BOILER SHELL
+	LINE(423,112)-(281,183),7
+	LINE(281,183)-(273,187),1,,&H1111
+
+	RETURN
+END
+

@@ -1,0 +1,219 @@
+Program Copyright Richard Williams (R.W.W) e-mail richardandtracy@yahoo.com
+
+Permission is hereby granted to anyone who wants to, to use, distribute and
+modify the program in any way they want free of charge for non-commercial use.
+HOWEVER.... if the program is modified, the modifier MUST:-
+1)  Acknowledge the R.W.W copyright material somewhere.
+2)  EITHER send the modified program back to R.W.W for a cursory accuracy check
+    OR state somewhere visible to the user that the program has been modified
+    and the accuracy of the changes has not been verified.
+3)  Not sell the modified program without discussions with R.W.W.
+Commerial use must be discussed with R.W.W first.
+
+There - those conditions aren't too onerous are they?
+
+//---------------------------------------------------------------------------
+
+
+Contents
+1.	Introduction
+2.	How to use the program
+3.	Input file requirements
+4.	What the program does
+5.	Limitations
+6.	Bugs
+7.	Suggestions
+8.	Windows Version
+9.	Program History
+
+//---------------------------------------------------------------------------
+
+
+
+
+1. Introduction
+
+This program enables you to develop flat plates from the 3 dimensional boundary lines of a plate with curvature in one direction only (the X direction) - ie plates that have been draped over formers. This type of plate occurs in multi chine boats - suggesting one application for the program immediately.
+
+The Plate Development tool came into being because I want to build a 36 ft Bruce Roberts Spray Sailing Yacht (see http://www.bruceroberts.com). Initially I had intended to develop the plates from the 2 dimensional hand drawn plans that I had.
+
+Later, I discovered that Bruce Roberts had kept up with the times and were doing a kit drawing of the 36ft yacht, unfortunately, the version I wanted was only available at a hefty premium compared to one of the other versions. When I discovered this, I changed my ideas and decided to get the cheaper kit drawings, and convert it to what I wanted.
+
+In order to develop the plates of the modified boat, I had to re-draw the boat using CAD so that I could take the plate shapes off it. A slight snag was encountered when I discovered that none of the CAD programs I had access to could develop the plates, and none of the freeware programs I could find on the Internet could do exactly the job I wanted either...
+
+So I had to write the program myself. 
+Here it is.
+I hope you find it useful.
+
+The tool hasn't been used to build a boat yet - my yacht is going to be the first major trial of the program.
+
+
+
+//---------------------------------------------------------------------------
+
+
+2.	How to use the program
+
+
+From the DOS prompt type in:-
+
+Plate DXFfilename
+
+e.g. Plate C:\boats\hullplte.dxf
+
+If the program is able to finish the development sucessfully it writes a DXF file of the same name as the input file with the extension "Developed Plate.DXF", so the developed plate of "C:\boats\hullplte.dxf" would be "C:\boats\hullplte Developed Plate.dxf"
+
+If, during the development, you see messages like "Array Error at ***" - don't worry too much, the program is designed to be very robust and is probably failing to match points to the nearest 1e-6 units, just be aware that there may be a problem and look in the output file for any obvious inconsistancies.
+
+If you really want to study the program output, it can be redirected to a file using the DOS command line '>' symbol. For example:-
+
+	Plate C:\boats\hullplte.dxf > C:\boats\hullplte.txt
+
+This re-directs the screen output to 'hullplte.txt' for future reference.
+
+
+//---------------------------------------------------------------------------
+
+
+3.	Input file requirements
+
+
+The input file needs to be the boundary lines around a plate.
+
+The first thing that you must do is to create a 3D CAD model of the object. 
+
+The next thing is to create a boundary of a particular plate using lines, arcs and cubic polylines. Note that you may have to delete a lot of the model to do this, so make a backup copy of the CAD file before you start! Tip: Create the boundary on a new layer. 
+
+Delete/ Erase (do not hide!) all the model except the plate boundary you've just created. This is much easier if you created the boundary on a new layer, then all you have to do is hide the boundary layer and delete everything that's still visible. Make sure that the boundary has at least 3 lines in it. Try to make sure that there are no duplicate lines and that only the lines of the boundary are present.
+
+Finally, purge any un-referenced blocks from the file. These sections of drawing will remain in the DXF file header even though they are invisible on the drawing. If you leave them there, you WILL develop the wrong plate. I can guarantee it (been there, done that, it's absolutely infuriating!).
+
+Make sure that the plate boundary has straight, bulged or pointed ends - no re-entrant curves are allowed in the ends of the plate. No holes are allowed in the plate. If you need these - split the plate into segments and stitch the developed plates back together afterwards.
+
+All blocks must be exploded in the DXF file, as everything the the DXF file header is ignored (well, sometimes it isn't and that causes problems, which is why you MUST remember to purge un-referenced blocks!)
+
+All Extrusions of DXF file entities are ignored. The program will only cope with linear entities in 3 dimensions.
+
+If you are using AutoCAD LT97 or above or AutoCAD R14 or above, export the DXF file as "AutoCAD LT2/R12 DXF". The reason for this is that the AutoCAD LT97/R14 DXF file format prefers "SPLINES" to "POLYLINES" and the plate development program can only read the following entities:-
+
+	ARC
+	LINE
+	POLYLINE (Straight or Cubic form - the Bezier form is too difficult for me to program!)
+
+The cubic form of the POLYLINE must not be closed (it's a bit difficult to get three lines in a boundary if only one line makes a loop isn't it?). This does not apply to the straight POLYLINE as it is broken down into a series of straight lines when it's read in from the DXF file.
+
+
+//---------------------------------------------------------------------------
+
+
+4.	What the program does
+
+The Plate Development Tool reads in a DXF file for the boundary of a plate. Just one plate boundary at a time. Please make sure that all the lines present in the DXF file are required for the plate boundary and that there are no duplicated lines. The boundary MUST be closed. The boundary may be made up of straight lines, arcs and/ or cubic splined polylines. Any number of lines is acceptable. It is assumed that the plate is curved so that at every X co-ordinate along the plate the cross section through the plate is a straight line (at any angle defined by the boundary).
+
+Once the boundary is read in, various checks are made on the boundary and equations are set up. Development of the flat plate then starts. The development starts in the middle and works its way to each end of the plate in small increments. The idea is that taking lots (well, thousands) of small straight line steps will reduce the chance for errors to a minimum. If mathematical errors are encountered during the the analysis, the errors are listed as they occur.
+
+
+
+
+The actual detail of what it does is a little difficult, but here goes anyway:-
+
+A plate to be developed has a degree of curvature along its length in the X axis. It is also known that the plate has single curvature, so the cross section of the plate in the YZ plane at any value of X is always a straight line. So, if you have a value of X = Xn, you can draw a straight line between the top edge of the plate and the bottom edge of the plate, and you can do the same at another value of X, X = "Xn + A little Bit". Take the point where the plane X = Xn intersects the top line as A, and the bottom line as B. Take the point where the plane X = Xn + A little Bit intersects the top line as C, and the bottom line as D 
+
+Now, if the line AB is drawn in 2D (call it A'B') with the same distance between A' and B' as between A and B, the distance AC and BC will fix the position of the developed point C (call it C') relative to A' and B'. So AB = A'B', AC = A'C' and BC = B'C'. The same happens with the developed point D (call it D') considering lengths AD and BD. If this is done accurately the distance CD will equal C'D'.
+
+If line A'B' is at an angle to the vertical C' and D' have to be rotated by the same angle about B' to get the correct co-ordinate in the developed plate XY plane. This procedure can be repeated with X = "Xn + A little bit" and a new line at X = "Xn + A little bit more" until the end of the plate is reached.
+
+If the size of the step between X = Xn and X = "Xn + A little bit" is small enough, the effects of the simplification of using a straight line instead of a curved line at AC and BD are small enough to be ignored.
+
+The program starts off with a default size for "A little bit" as 1/1000 x model X dimension, with a maximum value of 1 or minimum value of 1/100 x model X dimension. This way enough steps are taken to minimise the mathematical errors introduced by the straight line simplification. To prevent rounding errors, double precision floating point numbers are used. These are accurate to 15 decimal places (64 bits), so with any luck mathematical errors will never interfere with the analysis.
+
+The positions A, B, C and D are calculated from cubic representations of the line segments held in the computer memory. Each segment between control points may be calculated from the equations
+
+	Y = B0 + B1*X + B2*X^2 + B3*X^3
+	Z = C0 + C1*X + C2*X^2 + C3*X^3
+
+If X is known, then Y and Z may be obtained directly. The values of B0..C3 are all calculated as the line is read in from the input DXF file using a maximum of four control points on the input line for each segment of line. Where possible the equations are generated including the effect of control points on either side of the segment of line being considered. This is not possible at the ends of lines, where the 4 control points nearest the end of the line are used.
+
+The identification of a boundary was relatively easy to code, but an absolute nightmare to think through in the first place. The way the program finds a boundary is described below:-
+
+Because it's possible for a boundary loop to exist, yet not to include the first line in the DXF file, the lines are checked starting with the first line, then  attempting to find a loop. While going through the line list, other lines are checked for meeting at the end of the line being considered and kept as alternatives if they do. If the first alternative fails to produce a loop, the program backs up to the last vertex with an alternative and tries that until there are no more alternatives to try.
+
+If this fails, the next line is tried as the start line of the boundary checking until all lines have been tried.
+
+Eventually, if no boundary has been found, the accuracy of merging the ends of the lines is repeatedly reduced by a factor of 10 until the accuracy is 1/100 the model size. (This gets over a problem I had where AutoCAD LT97 didn't snap exactly to the ends of two lines). If no boundary can be found at this point, the program gives up and goes all grumpy on you.
+
+The rest of the program is pretty straight forward - take a look at the source code in "platedos.cpp". One minor point though, if you don't read/speak/think C or C++, "platedos.cpp" is probably worth missing. One word about the source code - it's all set up for the Borland C++ Builder compiler version BCB4, and as it uses the Borland VCL it probably won't compile with any other compiler.
+
+
+Overall, there is nothing particularly special about the analysis methodology used in the program - it's called the "Brute Ignorance and Force" method, and is widely used in engineering for problems that are too difficult to generate an explicit solution (think of Finite Element Stress Analysis as another example of breaking complex problems into tiny little pieces). Computers make it possible as they are able to break everything down into tiny steps and do the myriad calculations in a reasonable time.
+
+
+//---------------------------------------------------------------------------
+
+
+5.	Program Limitations
+
+The main limitations are listed below:-
+
+5.1)	Only one plate boundary at a time. If more than one boundary is present, the first boundary found will be used - this may lead to an unexpected boundary being developed.
+
+5.2)	The program is intended for plates with large radii of curvature relative to the plate thickness. If the plate has a radius of curvature less than approximately 20x plate thickness, then neutral axis movement begins to become significant, and this is not catered for. It is better to keep the radii of curvature greater than 100x the plate thickness (ie 2ft radius for 1/4 inch plate).
+
+5.3)	The program can't cope with plates where any section of the curved plate is exactly perpendicular to the X axis. It is better for the plate to be kept more than 45 degrees from perpendicular if possible, but don't worry until it gets to within 1 degree of perpendicular (automatic segment sizing eliminates much of the problem). Note:- The +X and -X ends of the model are a special case, and can be perpendicular to the X axis.
+
+5.4)	It is assumed that the plate cross section forms a straight line in the Y/Z plane. If this is not the case, then please rotate the plate before bringing it into the program so it is the case (eg developing the shape of cambered decks or transome from a hull model with the fore/aft axis being in the X direction).
+
+5.5)	The program assumes that the plate material is homogenous (same material/ thickness/ stiffness etc all over) and isotropic (same stiffness etc in all directions). 
+	If the plate material is not isotropic, then there may be some peculiar warping effects as the plate bends - this is not catered for. It should be noted that plywood is NOT isotropic, however, so long as the bend radii are kept large (say more than 100x thickness), it can usually be treated as being isotropic.
+If the plate is not homogenous, then you've got a very peculiar material, and quite frankly I would question whether it is suitable for any type of job. In any case, with a plate that is not homogenous, the program can't help.
+
+5.6)	Due to the way the program takes little steps along the profile it is possible for corners at sharp changes in profile direction to get cut off by a tiny amount. Just be careful of this and after developing the profile, check any areas where this may occur. The maximum size of the cutoff is likely to be 1 unit, so if you are working in millimetres it is unlikely to be a problem, and you may not feel the need to do anything about it.
+
+
+//---------------------------------------------------------------------------
+
+
+6.	Bugs
+
+The plate development program is thought to be bug free, however if you spot any bugs, please let me know as soon as possible at richardandtracy@yahoo.com! It may affect my boat too, you see... It would be appreciated if you could E-mail (or post on disc) a copy of the original model (DXF or AutoCAD R2 to 2000 format), .DXF plate boundary input file, a copy of the developed plate DXF file and describe what you expected to be in the output. A program update will be on it's way to you within days - if the cause and cure can be found!
+
+
+//---------------------------------------------------------------------------
+
+
+7.	Suggestions
+
+To be honest, there are unlikely to be any changes to this program without user suggestions. I want to use it for one job only, and hope that it'll be useful to others.
+
+
+Suggestions
+
+If you have any suggestions for the plate development program, then send the suggestions to richardandtracy@yahoo.com, and the suggestions will be considered for inclusion in future versions of the program. I will make no promises to include all suggestions, however any good ideas that may have wide application will be considered and - if practical - will be incorporated in the program.
+
+If you think there's a better way for the plate development program to work, contact richardandtracy@yahoo.com. All suggestions are welcome.
+
+
+Appreciation
+
+If you find the program useful, I don't mind if you tell me! If you wish to do so, contact richardandtracy@yahoo.com.
+Equally, if you find the program irritating in some way, also let me know - it won't be improved unless I know. 
+
+
+//---------------------------------------------------------------------------
+
+
+8.	Windows Version
+
+The DOS program is a cut-down version of the Windows program with significant added user-unfriendliness. If you want the Windows version - it comes as a 2.01 Mb installation package, but it is much easier to use and has a much better help file. Drop me a line at richardandtracy@yahoo.com, putting something like "Program Request" in the subject (otherwise I tend to ditch e-mail from people I don't know in the unread state).
+
+
+//---------------------------------------------------------------------------
+
+
+9.	Program History
+
+Nov 2002	Initial Release
+May 2003	Revised release.
+		Better cubic line approximation.
+		Incorporated automatic long line splitting.
+		2 bugs preventing development of some plates removed.

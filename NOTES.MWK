@@ -1,0 +1,205 @@
+				Software Notes
+			Last Update: 05 January 2000
+
+ABOUT DEFAULT DIRECTORIES
+
+	All the programs read/write from/to files they expect to find in the
+default (sub)directory on the hard disk.  This is the directory you're 'in'
+when you initiate the program by typing its name at the DOS prompt.  If you're
+not sure what directory you're in, I suggest you add the following line to your
+AUTOEXEC.BAT (or you can just execute it at the DOS prompt):
+
+			PROMPT $L$P$G
+
+(follow the $G above with two or three spaces).  Then the prompt will SHOW YOU
+what directory you're currently 'in'.
+
+	While I'm not about to tell you how to organize your hard disk, a
+reasonable suggestion might be to create one directory (say C:\MWK) for all the
+software you download from my site.  Then, when you want to use a program, go
+there with the DOS command:
+
+			CD C:\MWK
+
+(The DOS prompt should now look like <C:\MWK>; type the name of the program and
+you're off and running.)
+
+-------------------------------------------------------------------------------
+
+WHY THE DEFAULTS
+
+	When MOST of MY programs request data from the user, they include a
+default answer.  For instance you might see a line like:
+
+Desired motion of movable nut [0.25 in] ?
+
+	The value in brackets ([0.25 in]) is what the program will use if you
+press the Enter key in answer to the query.  The indicated units (inches in
+this case) are the units in which your input should be measured.  Of course,
+when such a query is made, there is no need to accept the default - one can
+enter any value that makes sense.  For instance, if you wanted the nut to have
+a motion of 3/8" you would type '0.375'. Note that you do NOT type the units
+(or brackets) as part of the answer to the query.  The program assumes the
+indicated units for whatever you type in response.  If no units are indicated,
+(e.g. CSEG specifies no units for lengths but does specify that angles be
+measured in degrees) that means that the program assumes you'll enter data in
+a CONSISTENT set of units and the answers will be in the (assumed) input
+units. In some cases the program may accept rational fraction input as well as
+the conventional input (0.375 as well as 3/8).  If this is the case (it
+ususally isn't), a message will be displayed advising you that both forms of
+input are acceptable.  Don't assume that you can use fractional expressions
+unless explicityly instructed that it's legal.
+
+	Sometimes, I may use library functions of my own construction that
+print a default with comma separators.  You may see something like:
+
+Altitude [1,000 ft] ?
+
+	The comma separators are cosmetic and you should NOT use them when
+entering your override to the default.  For instance, if you wanted to input an
+altitude of 30,000 ft. in answer to the above query, enter it as:
+
+		30000
+
+followed by the 'Enter' key.  Of course, you could also use scientific
+notation and enter the override as 3e4.
+
+	The defaults indicate more than the nature of the answer expected.  If
+you run the program using all default answers, you'll get a typical example of
+how the program operates.  Generally this is very helpful (I hope) in
+understanding what the program does before you attempt to use it to solve your
+particular problem.
+
+	If a program 'hangs up' on you, first try pressing 'Ctrl-C' (hold down
+the Ctrl key and press C).  If that doesn't work you may need to reboot your
+computer.  Assuming you were making legitimate input to the program, if it
+hangs up on you, send me an email with as much detail as possible about what
+you were doing when it hung up and I'll try to resolve the problem.
+
+	While I've tried to have the programs check for LIKELY errors, I do
+presume some intelligence on the part of the user.  If a menu lists options
+1-4 and you enter 5,0, or some negative number, don't be surprised if the
+program fails to ding you and produces some unexpected output.  No program can
+be made completely idiot-proof and I don't want to waste my programming time
+trying to anticipate every form of idiocy.  Should you identify a common error
+that I've failed to trap, alert me of that fact and I'll do my best to check
+for it in the next version.
+
+	As much as possible, I've tried to make the programs insensitive to
+case when utilizing alphabetic information.  Should you encounter an
+unexpected result, first try using the same case as the default.  If that
+doesn't work, alert me.
+
+-------------------------------------------------------------------------------
+
+WHY WRITE A PROGRAM ?
+
+	I've been asked on many occasions why I would bother to write a
+program that does little more than provide information readily available in
+certain reference texts.  My answer is, "Why would one buy a scientific
+calculator if one already has a book with a table of trig functions in it?"
+
+	GAGE is a good example.  It allows you to find (sheet/wire) gage
+number given thickness/diameter or vice versa.  This is information easily
+available in 'Machinery's Handbook' or a wealth of other references.  Why
+write such a program?
+
+	AVAILABILITY
+
+	First, not everyone has the needed reference work to hand or
+necessarily knows instantly which book to pull from the shelf.  Even if one
+has the book, finding the information can often be tedious.  In the
+information age, it's generally easier to find data via the web than to search
+for it in one's (even perhaps extensive) home library.  If the information is
+stored on your computer, you're always within a few keypresses of having it to
+hand.  In fact, the ready availability and locatability of information is, in
+my mind, a more important asset of the computer than it's ability to do
+lightning fast computation.
+
+	CONVENIENCE
+
+	If you're a regular computer user, as many of us are today, you
+already know that typing some simple command, like 'GAGE' is far easier than
+searching out the book, scanning the index, finding the page, reading the
+table usage information, and then interpolating to find the desired
+information.  Where appropriate, my programs tabulate output into a file which
+can be printed and carried to the shop for reference and that's a lot easier
+than dragging a bulky book to the shop and trying to hold it open with your
+anvil as a book weight.
+
+	SPEED
+
+	What computers are all about.  Being able to get an answer rapidly
+makes you are more likely to 'do it right the first time' and to explore
+alternate solutions to the problem.  Often a well written program will
+effortlessly provide 'more information than you asked for' and that can be a
+boon to creativity.
+
+	ERROR MINIMIZATION AND LONG TERM MEMORY
+
+	If the code is written correctly, a program 'remembers' FOREVER EXACTLY
+how to solve a given problem.  The human mind is never capable of this long
+term precision.  Beyond remembering the mechanization of solution, it can also
+remember all the likely errors to check for, catch typos, and just generally
+formalize the input to the point where most simplistic errors will be caught.
+
+	ADAPTABILITY
+
+	By utilizing an easily edited data file as input, the well-written
+program provides a means whereby the user can tailor the program, or add to its
+data base without the need to understand in detail the interior workings of the
+algorithm.
+
+-------------------------------------------------------------------------------
+
+DECIMAL PLACES
+
+	I'm getting very tired of people dinging me because some of the
+programs display numbers with a precision that can't be easily measured (e.g.
+printing an angle to five decimal places).  I don't understand what they find
+so difficult about looking at a number and mentally rounding it to the accuracy
+of their measuring gear.  In many cases I purposely display the number to more
+precision than can be measured because it's difficult to decide a priori just
+how many places the nitpickers might want.  Therefore it makes sense to display
+more precision than anyone might want and let each individual (mentally) adjust
+it to his requirements.  Certainly that's better than displaying every number
+with too few places.  If you're really annoyed by this excess of precision I
+suggest you use the time you would have spent writing me an annoying letter to
+recode the program to your own taste.
+
+-------------------------------------------------------------------------------
+
+HEALTH AND SAFETY NAZIS
+
+	I've been dinged several times now because I don't litter my
+explanations with endless warnings about health and safety related issues.  I
+presume these criticisms come from people who either:
+
+		Don't have a life
+		Are in training to be lawyers
+		Are running for public office (Al Bore as role model?!)
+
+	Metalworking (and other DIY hobbies) are inherently dangerous.  You owe
+it to yourself to acquaint yourself with the dangers involved and take
+appropriate action to protect yourself.  Contrary to what your culture and your
+government suggest, you have a PERSONAL RESPONSIBILITY to care for yourself.
+
+	Given that fact, I'm not going to attempt to warn you about everything
+that could go wrong.  I realize that's a hopeless task, even if my government
+doesn't.
+
+	If you don't like that approach then my suggestion is for you to set up
+your own web page and occupy a few terabytes of disk space with a comprehensive
+set of safety instructions.
+
+-------------------------------------------------------------------------------
+How to contact me: 
+
+Snailmail:
+Marvin W. Klotz
+26630 Indian Peak Road
+Rancho Palos Verdes, CA 90275-2331
+
+E-mail: mklotz@alum.mit.edu
+Home Page: http://www.geocities.com/CapeCanaveral/Hall/4425
+

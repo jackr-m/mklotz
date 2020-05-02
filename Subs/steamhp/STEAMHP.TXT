@@ -1,0 +1,14 @@
+Don Nichols (dnichols@d-and-d.com) wrote a handy program to calculate the
+approximate horsepower produced by a steam engine, given the various parameters
+that contribute to the calculation.  
+
+I rewrote his program to make the input more explicit.  Don has reviewed the
+new program and given his permission to publish it here.
+
+For those of you who prefer the original, unix-compatible version written by
+Don, you can find it at:
+
+		http://www.d-and-d.com/shop-programs/plan/
+
+
+

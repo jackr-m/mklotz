@@ -1,0 +1,26 @@
+I built a boiler and used soft (430 degF melting point) solder to seal all the
+joints.  (The solder doesn't provide any mechanical strength; it merely serves
+to establish a water/gas seal of the joints.)
+
+Now, we all know that you can't make hard-boiled eggs on the top of a tall
+mountain.  The temperature at which water boils depends on the pressure of the
+gas at the water surface.  The other side of this equation is, of course, that
+with higher pressure over the water, the boiling temperature will increase.
+
+How high does the boiler pressure have to get before the boiling temperature of
+the water equals the (430 degF) melting point of the solder?
+
+Folks with a physics background will recognize this problem as an instance of
+the Clausius-Clapeyron equation.  Now, isn't that a *really* impressive
+sounding name for an equation?  Any equation with such a formidable name cries
+out for a program of its own.  
+
+I wrote the program such that one inputs the pressure indicated on the boiler
+gage (i.e., pressure above atmospheric pressure since most boiler gages read
+zero at one atmosphere) and the program reports the temperature at which water
+will boil under that pressure.
+
+I was relieved to discover that the boiler pressure would have to get to 350
+psi before the boiling temperature reaches 430 degF.  Since the boiler is
+fitted with a 60 psi safety valve, I don't need to worry about a meltdown.
+
