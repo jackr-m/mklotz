@@ -56,6 +56,11 @@ v0.30:
 - Started work on DIAM.PY
 - Updated template.py
 
+v0.31:
+- Continued work on DIAM.PY
+    - Switched to using regular expressions instead of mklotz's read algorithm for more versatility
+- Changed DIAM.DAT to DIAMPY.DAT
+
 FAQ:
 - Q: What's the upython.exe for?
     - A: That's micropython that's been compiled for FreeDOS (but works with any DOS from experience). Taken from https://github.com/pohmelie/micropython-freedos

@@ -1,4 +1,5 @@
 import math
+import re
 
 def cls():
     print("\x1B\x5B2J", end="")
@@ -27,7 +28,8 @@ c=12/math.pi
 dfile = "DIAMPY.DAT"
 ofile = "DIAMPY.OUT"
 
-fp = open(ofile, "w")
+fp = open(dfile, "r")
+fpw = open(ofile, "w")
 
 
 def main():
@@ -44,7 +46,17 @@ def rdata():
     f=0
     ns=0
 
-    
+    materials = []
+
+    for i in fp:
+        x = re.search(r"\d{1,3} (\w|\s)* \d{1,4} \d{1,4}",i)
+        try:
+            result = x.group()
+        except AttributeError:
+            result = None
+        if result:
+            print(result)
+        materials.append(result)
 
 
 main()
