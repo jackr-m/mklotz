@@ -40,10 +40,14 @@ v0.10:
 
 v0.11:
 - Fixed README.md formatting
+
 v0.20:
 - Finished DOT.PY
 - Added template.py to root
 - Updated README.md
+
+v0.21:
+- Fixed README.md formatting
 
 FAQ:
 - Q: What's the upython.exe for?
