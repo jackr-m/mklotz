@@ -13,11 +13,11 @@ Currently converted programs:
 - DALLOW
 - KNURL
 - DOT
+- DPLATE
 
 Programs to be converted soon:
 - DIAM
 - SPEED
-- DPLATE
 - DRILL
 - ECCENT
 - FEED
