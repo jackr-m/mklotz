@@ -16,13 +16,14 @@ Currently converted programs:
 - DPLATE
 
 Programs to be converted soon:
-- DIAM
-- SPEED
-- DRILL
-- ECCENT
-- FEED
-- FITS
-- GAGE
+- \MANUF\DIAM
+- \MANUF\SPEED
+- \MANUF\DRILL
+- \MANUF\ECCENT
+- \MANUF\FEED
+- \MANUF\FITS
+- \MANUF\GAGE
+- \SUBS\SPRING
 
 To-do List:
 1. Create two directiories for short file names (DOS compatability) and long file names (more descriptive)
