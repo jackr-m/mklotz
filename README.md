@@ -52,6 +52,10 @@ v0.21:
 v0.22:
 - Updated to-do list
 
+v0.30:
+- Started work on DIAM.PY
+- Updated template.py
+
 FAQ:
 - Q: What's the upython.exe for?
     - A: That's micropython that's been compiled for FreeDOS (but works with any DOS from experience). Taken from https://github.com/pohmelie/micropython-freedos

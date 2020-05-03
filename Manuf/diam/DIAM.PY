@@ -22,7 +22,29 @@ def vin(prompt, defvalue, **kwargs):
 
     return (input(input_prompt) or defvalue)
 
+c=12/math.pi
+
+dfile = "DIAMPY.DAT"
+ofile = "DIAMPY.OUT"
+
+fp = open(ofile, "w")
+
+
 def main():
     cls()
+    print('MACHINING DIAMETER UTILITY\n')
+
+    rdata()
+    print('number of data entries read = ')
+
+def rdata():
+    temp = []
+    nd=0 # number of data entries
+    k=0
+    f=0
+    ns=0
+
+    
+
 
 main()

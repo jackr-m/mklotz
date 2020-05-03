@@ -1,5 +1,6 @@
 {
     "files.associations": {
-        "DPLATE.C": "cpp"
+        "DPLATE.C": "cpp",
+        "DIAM.C": "cpp"
     }
 }
