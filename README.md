@@ -12,11 +12,11 @@ Currently converted programs:
 - COMPOUND
 - DALLOW
 - KNURL
+- DOT
 
 Programs to be converted soon:
 - DIAM
 - SPEED
-- DOT
 - DPLATE
 - DRILL
 - ECCENT
@@ -48,6 +48,9 @@ v0.20:
 
 v0.21:
 - Fixed README.md formatting
+
+v0.22:
+- Updated to-do list
 
 FAQ:
 - Q: What's the upython.exe for?
