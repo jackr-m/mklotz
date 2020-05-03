@@ -1,3 +1,15 @@
+; Data for SPEED program
+;
+; Entries are: material id	low sfpm	high sfpm
+; SFPM = Surface Feet Per Minute
+; Separate the entries by at least one tab
+; After the entry "SPEED" list the available machine speeds (rpm)
+; You can add your personal data to this file using any ascii text editor
+; Program can handle up the amount of entries your ram can handle
+; NO DUPLICATES (you shouldn't need them anyway)
+;
+; Any single number on its own line will be interpreted as a speed
+
 1 ALUMINUM AND ALLOYS 200 300
 2 BRASS AND SOFT BRONZE 100 300
 3 LOW CARBON STEEL 80 150
@@ -25,19 +37,3 @@ SPEEDS
 1090
 1595
 2225
-
-;Anything entered below the next line will be ignored
-ENDOFDATA
-
-;Data for SPEED program
-
-; Entries are: material id	low sfpm	high sfpm
-; SFPM = Surface Feet Per Minute
-; Separate the entries by at least one tab
-; After the entry "SPEED" list the available machine speeds (rpm)
-; You can add your personal data to this file using any ascii text editor
-; Program can handle up to 400 entries
-
-You can add notes here without the need to preface each line with the
-comment character (";").
-

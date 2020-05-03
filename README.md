@@ -57,6 +57,9 @@ v0.30:
 - Started work on DIAM.PY
 - Updated template.py
 
+v0.35:
+- Finished DIAM.PY
+
 v0.31:
 - Continued work on DIAM.PY
     - Switched to using regular expressions instead of mklotz's read algorithm for more versatility
