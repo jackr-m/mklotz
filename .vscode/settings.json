@@ -1,6 +1,8 @@
 {
     "files.associations": {
         "DPLATE.C": "cpp",
-        "DIAM.C": "cpp"
+        "DIAM.C": "cpp",
+        "DRILL.C": "cpp",
+        "GAGE.C": "cpp"
     }
 }

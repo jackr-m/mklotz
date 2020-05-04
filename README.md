@@ -5,15 +5,15 @@ These are designed to be as close to a 1-1 copy of Marv Klotz's programs from ht
 
 
 Currently converted programs:
-- 3WIRE
-- ROTARY
-- SINEBAR (EVERYTHING DONE EXCEPT FOR FINDING THE INDIVIDUAL GAGE BLOCKS)
-- BOLTCIRC
-- COMPOUND
-- DALLOW
-- KNURL
-- DOT
-- DPLATE
+- \MANUF\3WIRE
+- \MANUF\ROTARY
+- \MANUF\SINEBAR (EVERYTHING DONE EXCEPT FOR FINDING THE INDIVIDUAL GAGE BLOCKS)
+- \MANUF\BOLTCIRC
+- \MANUF\COMPOUND
+- \MANUF\DALLOW
+- \MANUF\KNURL
+- \MANUF\DOT
+- \MANUF\DPLATE
 
 Programs to be converted soon:
 - \MANUF\DIAM
@@ -60,6 +60,10 @@ v0.30:
 v0.35:
 - Finished DIAM.PY
 
+v0.40:
+- Started work on GAGE.PY
+- Changed GAGE.PY to use 2 separate data files
+
 v0.31:
 - Continued work on DIAM.PY
     - Switched to using regular expressions instead of mklotz's read algorithm for more versatility
@@ -77,3 +81,6 @@ FAQ:
 
 - Q: Too many decimal places!
     - A: In most cases I tried to round the answers to the tenths of and inch, as that is the usual practical limit of measuring normal things in a shop.  If you need more change it!  If this is a common request I might go back and add a "rounding" variable at the top of each file for people to change.
+
+- Q: Why is are the data (.DAT) files different for the python programs?
+    - A: Python handles files differently than C (obviously). In many cases I found it easier to change up the data structure so that the files could be handled with regular expressions, making it easier to modify the format, and the only limit to the number entries is your RAM space.
