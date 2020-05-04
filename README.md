@@ -29,6 +29,7 @@ To-do List:
 1. Create two directiories for short file names (DOS compatability) and long file names (more descriptive)
 2. Compile python programs into a single .exe file to mimick mklotz's original programs
 3. Create a list to help you find/figure out what each program is for.
+4. Figure out how releases work
 
 Change-Log:
 
@@ -68,6 +69,10 @@ v0.31:
 - Continued work on DIAM.PY
     - Switched to using regular expressions instead of mklotz's read algorithm for more versatility
 - Changed DIAM.DAT to DIAMPY.DAT
+
+v0.35:
+- Finished GAGE.PY
+- Added metric conversion for gages
 
 FAQ:
 - Q: What's the upython.exe for?
