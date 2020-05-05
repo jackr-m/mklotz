@@ -14,15 +14,15 @@ Currently converted programs:
 - \MANUF\KNURL
 - \MANUF\DOT
 - \MANUF\DPLATE
+- \MANUF\DIAM
+- \MANUF\GAGE
 
 Programs to be converted soon:
-- \MANUF\DIAM
 - \MANUF\SPEED
 - \MANUF\DRILL
 - \MANUF\ECCENT
 - \MANUF\FEED
 - \MANUF\FITS
-- \MANUF\GAGE
 - \SUBS\SPRING
 
 To-do List:
@@ -73,6 +73,15 @@ v0.31:
 v0.35:
 - Finished GAGE.PY
 - Added metric conversion for gages
+
+v0.40:
+- Added \For upython\ directory for all of the currently converted programs
+- Updated README completed list
+- Fixed formatting on BOLTCIRC.PY
+- Fixed formatting on DOT.PY
+- Fixed formatting on KNURL.PY
+- Tested pyinstaller & py2exe on BOLTCIRC.PY in the \Compiled Executables directory
+- Fixed a promt on GAGE.PY
 
 FAQ:
 - Q: What's the upython.exe for?

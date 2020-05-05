@@ -1,6 +1,5 @@
 import math
-from tabulate import tabulate
-import os
+import tabulate.py
 
 def cls():
     print("\x1B\x5B2J", end="")
@@ -49,5 +48,3 @@ def main():
 
 
 main()
-
-os.system('pause')
