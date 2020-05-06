@@ -8,6 +8,8 @@
         "FITS.C": "cpp",
         "ECCENT.C": "cpp",
         "ECCENTUB.C": "cpp",
-        "SPEED.C": "cpp"
+        "SPEED.C": "cpp",
+        "SPRING.C": "cpp",
+        "BEND.C": "cpp"
     }
 }

@@ -20,6 +20,7 @@ Currently converted programs:
 - \MANUF\FITS
 - \MANUF\ECCENT
 - \MANUF\SPEED
+- \MANUF\BEND
 
 Programs to be converted soon:
 - \MANUF\DRILL
@@ -33,6 +34,8 @@ To-do List:
 5. Add option to print result to the console or a file for the programs that normally only print to a file
 
 Change-Log:
+v0.90:
+- Finished BEND.PY
 
 v0.80:
 - Finished SPEED.PY

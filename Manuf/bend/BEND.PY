@@ -21,5 +21,19 @@ def vin(prompt, defvalue, **kwargs):
 
 def main():
     cls()
+    print('BEND ALLOWANCE COMPUTATION\n')
+    t = float(vin('Thickness of material', 0.125, units="in"))
+    r = float(vin("Radius of bend", 3, units="in"))
+    ang = float(vin("Angle of bend", 90, units="deg"))
+    ang=math.radians(ang)
+    x=0.4*t
+    if (r < 2*t):
+        x=(1/3)*t
+    if (r > 4*t):
+        x=0.5*t
+    ba=ang*(r+x)
+    print('\nLength of bend exterior = {0} in'.format(round(ang*(r+t),4)))
+    print('Length of bend interior = {0} in'.format(round(ang*r,4)))
+    print('\nLength of material required to form bend = {0}'.format(round(ba,4)))
 
 main()
