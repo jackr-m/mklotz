@@ -17,12 +17,12 @@ Currently converted programs:
 - \MANUF\DIAM
 - \MANUF\GAGE
 - \MANUF\FEED
+- \MANUF\FITS
 
 Programs to be converted soon:
 - \MANUF\SPEED
 - \MANUF\DRILL
 - \MANUF\ECCENT
-- \MANUF\FITS
 - \SUBS\SPRING
 
 To-do List:
@@ -87,6 +87,9 @@ v0.40:
 v0.50:
 - Finished FEED.PY
 - Updated to-do list
+
+v0.60:
+- FITS.PY
 
 FAQ:
 - Q: What's the upython.exe for?

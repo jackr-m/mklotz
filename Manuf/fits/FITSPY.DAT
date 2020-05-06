@@ -1,0 +1,15 @@
+Data for FITS program (Shaft/Hole fit computation)
+Entries are:   fit name/constant/allowance
+
+
+Shrink,0.5,1.5
+Hard Press,0.5,0.75
+Medium Press,0.3,0.45
+Light Press,-0.15,-0.35
+Slide,-0.3,-0.45
+Precision Running,-0.5,-0.65
+Close Running,-0.6,-0.8
+Normal Running,-1.0,-1.5
+Easy Running,-1.5,-2.25
+Small Clearance,-2.0,-3.0
+Large Clearance,-3.0,-5.0
