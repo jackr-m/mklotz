@@ -66,7 +66,7 @@ v0.40:
 - Started work on GAGE.PY
 - Changed GAGE.PY to use 2 separate data files
 
-v0.31:
+v0.41:
 - Continued work on DIAM.PY
     - Switched to using regular expressions instead of mklotz's read algorithm for more versatility
 - Changed DIAM.DAT to DIAMPY.DAT
@@ -89,7 +89,11 @@ v0.50:
 - Updated to-do list
 
 v0.60:
-- FITS.PY
+- Finished FITS.PY
+
+v0.70:
+- Finished ECCENT.PY
+- Finished ECCENTUB.PY
 
 FAQ:
 - Q: What's the upython.exe for?

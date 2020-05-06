@@ -5,6 +5,8 @@
         "DRILL.C": "cpp",
         "GAGE.C": "cpp",
         "FEED.C": "cpp",
-        "FITS.C": "cpp"
+        "FITS.C": "cpp",
+        "ECCENT.C": "cpp",
+        "ECCENTUB.C": "cpp"
     }
 }
