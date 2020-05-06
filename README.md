@@ -1,7 +1,7 @@
 # mklotz
 A python3 rewrite of Marv Klotz's classic programs.  Designed to work in any python 3 environment, including micropython.
 
-These are designed to be as close to a 1-1 copy of Marv Klotz's programs from http://www.myvirtualnetwork.com/mklotz/
+These are designed to be close to a 1-1 copy of Marv Klotz's programs from http://www.myvirtualnetwork.com/mklotz/
 
 
 Currently converted programs:
@@ -16,12 +16,12 @@ Currently converted programs:
 - \MANUF\DPLATE
 - \MANUF\DIAM
 - \MANUF\GAGE
+- \MANUF\FEED
 
 Programs to be converted soon:
 - \MANUF\SPEED
 - \MANUF\DRILL
 - \MANUF\ECCENT
-- \MANUF\FEED
 - \MANUF\FITS
 - \SUBS\SPRING
 
@@ -30,6 +30,7 @@ To-do List:
 2. Compile python programs into a single .exe file to mimick mklotz's original programs
 3. Create a list to help you find/figure out what each program is for.
 4. Figure out how releases work
+5. Add option to print result to the console or a file for the programs that normally only print to a file
 
 Change-Log:
 
@@ -82,6 +83,10 @@ v0.40:
 - Fixed formatting on KNURL.PY
 - Tested pyinstaller & py2exe on BOLTCIRC.PY in the \Compiled Executables directory
 - Fixed a promt on GAGE.PY
+
+v0.50:
+- Finished FEED.PY
+- Updated to-do list
 
 FAQ:
 - Q: What's the upython.exe for?

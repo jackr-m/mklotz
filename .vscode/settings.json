@@ -3,6 +3,7 @@
         "DPLATE.C": "cpp",
         "DIAM.C": "cpp",
         "DRILL.C": "cpp",
-        "GAGE.C": "cpp"
+        "GAGE.C": "cpp",
+        "FEED.C": "cpp"
     }
 }
