@@ -18,11 +18,11 @@ Currently converted programs:
 - \MANUF\GAGE
 - \MANUF\FEED
 - \MANUF\FITS
+- \MANUF\ECCENT
+- \MANUF\SPEED
 
 Programs to be converted soon:
-- \MANUF\SPEED
 - \MANUF\DRILL
-- \MANUF\ECCENT
 - \SUBS\SPRING
 
 To-do List:
@@ -34,48 +34,23 @@ To-do List:
 
 Change-Log:
 
-v0.00:
-- Added readme & license
+v0.80:
+- Finished SPEED.PY
+- Added .gitignore for VSCode's settings.json
+- Changed changelog to reverse chronological order
 
-v0.10:
-- Added unzipped files from Marv Klotz's programs
-- Added current python3 conversions
+v0.70:
+- Finished ECCENT.PY
+- Finished ECCENTUB.PY
 
-v0.11:
-- Fixed README.md formatting
+v0.60:
+- Finished FITS.PY
 
-v0.20:
-- Finished DOT.PY
-- Added template.py to root
-- Updated README.md
-
-v0.21:
-- Fixed README.md formatting
-
-v0.22:
+v0.50:
+- Finished FEED.PY
 - Updated to-do list
 
-v0.30:
-- Started work on DIAM.PY
-- Updated template.py
-
-v0.35:
-- Finished DIAM.PY
-
-v0.40:
-- Started work on GAGE.PY
-- Changed GAGE.PY to use 2 separate data files
-
-v0.41:
-- Continued work on DIAM.PY
-    - Switched to using regular expressions instead of mklotz's read algorithm for more versatility
-- Changed DIAM.DAT to DIAMPY.DAT
-
-v0.35:
-- Finished GAGE.PY
-- Added metric conversion for gages
-
-v0.40:
+v0.49:
 - Added \For upython\ directory for all of the currently converted programs
 - Updated README completed list
 - Fixed formatting on BOLTCIRC.PY
@@ -84,17 +59,48 @@ v0.40:
 - Tested pyinstaller & py2exe on BOLTCIRC.PY in the \Compiled Executables directory
 - Fixed a promt on GAGE.PY
 
-v0.50:
-- Finished FEED.PY
+v0.45:
+- Finished DIAM.PY
+
+v0.41:
+- Continued work on DIAM.PY
+    - Switched to using regular expressions instead of mklotz's read algorithm for more versatility
+- Changed DIAM.DAT to DIAMPY.DAT
+
+v0.40:
+- Started work on GAGE.PY
+- Changed GAGE.PY to use 2 separate data files
+
+v0.35:
+- Finished GAGE.PY
+- Added metric conversion for gages
+
+v0.30:
+- Started work on DIAM.PY
+- Updated template.py
+
+v0.22:
 - Updated to-do list
 
-v0.60:
-- Finished FITS.PY
+v0.21:
+- Fixed README.md formatting
 
-v0.70:
-- Finished ECCENT.PY
-- Finished ECCENTUB.PY
+v0.20:
+- Finished DOT.PY
+- Added template.py to root
+- Updated README.md
 
+v0.11:
+- Fixed README.md formatting
+
+v0.10:
+- Added unzipped files from Marv Klotz's programs
+- Added current python3 conversions
+
+v0.00:
+- Added readme & license
+
+#
 FAQ:
 - Q: What's the upython.exe for?
     - A: That's micropython that's been compiled for FreeDOS (but works with any DOS from experience). Taken from https://github.com/pohmelie/micropython-freedos
@@ -109,4 +115,4 @@ FAQ:
     - A: In most cases I tried to round the answers to the tenths of and inch, as that is the usual practical limit of measuring normal things in a shop.  If you need more change it!  If this is a common request I might go back and add a "rounding" variable at the top of each file for people to change.
 
 - Q: Why is are the data (.DAT) files different for the python programs?
-    - A: Python handles files differently than C (obviously). In many cases I found it easier to change up the data structure so that the files could be handled with regular expressions, making it easier to modify the format, and the only limit to the number entries is your RAM space.
+    - A: Python handles files differently than C (obviously). In many cases I found it easier to change up the data structure so that the files could be handled with regular expressions, making it easier to modify the format, and allow as many entries as your RAM space can handle.

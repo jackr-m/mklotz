@@ -1,0 +1,25 @@
+; Data for SPEED program
+;
+; Entries are: material id	low sfpm	high sfpm
+; SFPM = Surface Feet Per Minute
+; Separate the entries by at least one tab
+; After the entry "SPEED" list the available machine speeds (rpm)
+; You can add your personal data to this file using any ascii text editor
+; Program can handle up the amount of entries your ram can handle
+; NO DUPLICATES (you shouldn't need them anyway)
+;
+; Any single number on its own line will be interpreted as a speed
+
+1 ALUMINUM AND ALLOYS 200 300
+2 BRASS AND SOFT BRONZE 100 300
+3 LOW CARBON STEEL 80 150
+4 MEDIUM CARBON STEEL 60 100
+5 HIGH CARBON STEEL 50 60
+6 TOOL AND DIE STEEL 40 80
+7 ALLOY STEEL 50 70
+8 MALLEABLE IRON 80 90
+9 SOFT CAST IRON 100 150
+10 MEDIUM CAST IRON 70 100
+11 HARD CAST IRON 40 60
+12 COPPER 60 80
+13 HIGH TENSILE BRONZE 70 90
