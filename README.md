@@ -21,9 +21,9 @@ Currently converted programs:
 - \MANUF\ECCENT
 - \MANUF\SPEED
 - \MANUF\BEND
+- \MANUF\CUSP
 
 Programs to be converted soon:
-- \MANUF\CUSP
 - \MANUF\BELT
 - \MANUF\PULLEY
 - \MANUF\BALLCUT
@@ -84,6 +84,9 @@ To-do List (for things other than converting programs):
 
 #
 Change-Log:
+v0.A0:
+- Finished CUSP.PY
+
 v0.91:
 - Updated soon-to-convert list
     - Will likely be the last of the programs I convert aside from a few, as these are the ones I would most likely need
