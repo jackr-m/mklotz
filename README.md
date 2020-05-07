@@ -23,17 +23,72 @@ Currently converted programs:
 - \MANUF\BEND
 
 Programs to be converted soon:
+- \MANUF\CUSP
+- \MANUF\BELT
+- \MANUF\PULLEY
+- \MANUF\BALLCUT
+- \MANUF\CHANGE
+- \MANUF\CMITER
+- \MANUF\COLLET
+- \MANUF\DIFFTHRD
+- \MANUF\DIVHEAD
+- \MANUF\DOVETAIL
+- \MANUF\EXPAND
+- \MANUF\GEAR
+- \MANUF\GEARPA
+    - Add more pressure angles
+- \MANUF\HORSE
+    - Will add an option to convert between Watts & HP
+- \MANUF\LOFT
+    - Add option to calculate different materials automatically
+        - Ask if tensile strength is the same for screw and hole
+- \MANUF\LVERN
+- \MANUF\MANDREL
+- \MANUF\MRADIUS
+- \MANUF\MIXTURE
+- \MANUF\REVOLVER
+- \MANUF\ROUNDER
+- \MANUF\RATTLE
+- \MANUF\SPROCKET
+- \MANUF\STICK
+- \MAUF\SLUG
+    - Includes SLUG.C & PLATE.C
+- \MANUF\TUBEWALL
+- \MANUF\UGROOVE
+- \MANUF\VREV
+- \MANUF\WIRE
+- \MISC\TEMP
+- \SUBS\CSK
+- \SUBS\KEYWAY
+- \SUBS\OHM
+
+
+Challenge programs (will take a while to convert but are extremely useful):
 - \MANUF\DRILL
 - \SUBS\SPRING
+- \MANUF\FINDTHRD
+- \MANUF\GEARFIND
+- \MANUF\GEARATIO
+- \MANUF\PROFILE
+- \MANUF\WEIGHT
+- \SUBS\CUTTER
+    - Will do if I'm feeling like brushing up on my Visual Basic
 
-To-do List:
+#
+To-do List (for things other than converting programs):
 1. Create two directiories for short file names (DOS compatability) and long file names (more descriptive)
 2. Compile python programs into a single .exe file to mimick mklotz's original programs
 3. Create a list to help you find/figure out what each program is for.
 4. Figure out how releases work
 5. Add option to print result to the console or a file for the programs that normally only print to a file
 
+#
 Change-Log:
+v0.91:
+- Updated soon-to-convert list
+    - Will likely be the last of the programs I convert aside from a few, as these are the ones I would most likely need
+    - Please file a GitHub issue if you want a specific program converted
+
 v0.90:
 - Finished BEND.PY
 
@@ -105,6 +160,9 @@ v0.00:
 
 #
 FAQ:
+- Q: Why haven't you converted program X?
+    - A: Check the "Programs to be converted soon list." If it's on there, please be patient.  If it's not, file a GitHub issue and I'll take a look at it!
+
 - Q: What's the upython.exe for?
     - A: That's micropython that's been compiled for FreeDOS (but works with any DOS from experience). Taken from https://github.com/pohmelie/micropython-freedos
 

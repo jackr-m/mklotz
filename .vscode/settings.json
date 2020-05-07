@@ -10,6 +10,7 @@
         "ECCENTUB.C": "cpp",
         "SPEED.C": "cpp",
         "SPRING.C": "cpp",
-        "BEND.C": "cpp"
+        "BEND.C": "cpp",
+        "MIXTURE.C": "cpp"
     }
 }

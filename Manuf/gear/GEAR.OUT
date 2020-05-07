@@ -1,0 +1,30 @@
+
+FOR BOTH GEARS:
+Gear Ratio = 2.250000:1
+Diametral Pitch = 20.0000
+Pressure Angle = 20.0000 deg
+Center Distance = 1.6250 in = 41.2750 mm
+
+FOR GEAR 1:
+Number of teeth = 45
+Outside Diameter = 2.3500 in = 59.6900 mm
+Addendum = 0.0500 in = 1.2700 mm
+Dedendum = 0.0600 in = 1.5240 mm
+Whole Depth = 0.1100 in = 2.7940 mm
+Circular Pitch = 0.1571 in = 3.9898 mm
+Tooth Thickness = 0.0754 in = 1.9151 mm
+Pitch Diameter = 2.2500 in = 57.1500 mm
+Base Circle Radius = 1.0572 in = 26.8517 mm
+Tooth Profile Radius = 0.3848 in = 9.7732 mm
+
+FOR GEAR 2:
+Number of teeth = 20
+Outside Diameter = 1.1000 in = 27.9400 mm
+Addendum = 0.0500 in = 1.2700 mm
+Dedendum = 0.0600 in = 1.5240 mm
+Whole Depth = 0.1100 in = 2.7940 mm
+Circular Pitch = 0.1571 in = 3.9898 mm
+Tooth Thickness = 0.0754 in = 1.9151 mm
+Pitch Diameter = 1.0000 in = 25.4000 mm
+Base Circle Radius = 0.4698 in = 11.9341 mm
+Tooth Profile Radius = 0.1710 in = 4.3437 mm
