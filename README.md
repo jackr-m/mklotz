@@ -24,10 +24,10 @@ These are designed to be close to a 1-1 copy of Marv Klotz's programs from http:
 - \MANUF\CUSP
 - \MANUF\BELT\QBELT
 - \MANUF\BELT\PCD
+- \MANUF\BALLCUT
 
 ### Programs to be converted soon:
 - \MANUF\BELT\BELT.EXE
-- \MANUF\BALLCUT
 - \MANUF\CHANGE
 - \MANUF\CMITER
 - \MANUF\COLLET
@@ -84,6 +84,9 @@ These are designed to be close to a 1-1 copy of Marv Klotz's programs from http:
 5. Add option to print result to the console or a file for the programs that normally only print to a file
 
 # Change-Log:
+v0.C5:
+- Finished PCD.PY
+
 v0.C0:
 - Finished BALLCUT.PY
 - Updated Q&A

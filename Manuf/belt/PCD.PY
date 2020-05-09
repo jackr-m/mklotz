@@ -50,6 +50,27 @@ def main():
     sf=10*dlen
     diff=-1
 
+    def done():
+            global beta1
+            global wrap1
+            global beta2
+            global wrap2
+            global span
+            global blen
+            global sep
+
+            print('\nFor known pulley:')
+            print('Diameter = {0}'.format(round(d1,4)))
+            print('Wrap angle = {0} deg'.format(round(math.degrees(beta1),2)))
+            print('Wrap length = {0}'.format(round(wrap1,4)))
+            print('\nFor calculated pulley:')
+            print('Diameter = {0}'.format(round(d2,4)))
+            print('Wrap angle = {0} deg'.format(round(math.degrees(beta2),2)))
+            print('Wrap length = {0}'.format(round(wrap2,4)))
+            print('\nBelt span between pulleys = {0}'.format(round(span,4)))
+            print('Belt length = {0}'.format(round(blen,4)))
+            print('Pulley center distance = {0}'.format(round(sep,4)))
+
     def again():
         global ss
         global sf
@@ -62,9 +83,10 @@ def main():
         global blen
         global sep
 
+        #sh = None
+
         sep = ss
-        for sep in range(0, sf, int(sf-ss)):
-            sep*=0.1
+        while (sep <= sf):
             difflast = diff
             eps=r2-r1
             phi=math.asin(eps/sep)
@@ -78,36 +100,17 @@ def main():
             diff=blen-dlen
             if (abs(diff) < acc):
                 done()
-            if (difflast < 0 & diff > 0):
+                return
+            if ((difflast < 0) & (diff > 0)):
                 sh=sep
                 break
             sl=sep
+            sep+=0.1*(sf-ss)
         ss=sl
         sf=sh
         again()
 
     again()
-
-    def done():
-        global beta1
-        global wrap1
-        global beta2
-        global wrap2
-        global span
-        global blen
-        global sep
-
-        print('\nFor known pulley:')
-        print('Diameter = {0}'.format(d1))
-        print('Wrap angle = {0} deg'.format(math.degrees(beta1)))
-        print('Wrap length = {0}'.format(wrap1))
-        print('\nFor calculated pulley:')
-        print('Diameter = {0}'.format(d2))
-        print('Wrap angle = {0} deg'.format(math.degrees(beta2)))
-        print('Wrap length = {0}'.format(wrap2))
-        print('\nBelt span between pulleys = {0}'.format(span))
-        print('Belt length = {0}'.format(blen))
-        print('Pulley center distance = {0}'.format(sep))
 
 
 main()
