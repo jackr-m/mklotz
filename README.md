@@ -27,11 +27,11 @@ These are designed to be close to a 1-1 copy of Marv Klotz's programs from http:
 - \MANUF\BALLCUT
 - \MANUF\CMITER
 - \MANUF\COLLET
+- \MANUF\DIFFTHRD
 
 ### Programs to be converted soon:
 - \MANUF\BELT\BELT.EXE
 - \MANUF\CHANGE
-- \MANUF\DIFFTHRD
 - \MANUF\DIVHEAD
 - \MANUF\DOVETAIL
 - \MANUF\EXPAND
@@ -104,6 +104,9 @@ These are designed to be close to a 1-1 copy of Marv Klotz's programs from http:
     - A: Python handles files differently than C (obviously). In many cases I found it easier to change up the data structure so that the files could be handled with regular expressions, making it easier to modify the format, and allow as many entries as your RAM space can handle.
 
 # Change-Log:
+v0.F0:
+- Finished DIFFTHRD.PY
+
 v0.E0:
 - Finished COLLET.PY
 - Moved FAQ above Change-Log
