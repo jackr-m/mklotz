@@ -19,6 +19,7 @@
         "BALLCUT.C": "cpp",
         "CMITER.C": "cpp",
         "COLLET.C": "cpp",
-        "DIFFTHRD.C": "cpp"
+        "DIFFTHRD.C": "cpp",
+        "DOVETAIL.C": "cpp"
     }
 }
