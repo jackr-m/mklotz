@@ -22,6 +22,7 @@
         "DIFFTHRD.C": "cpp",
         "DOVETAIL.C": "cpp",
         "LOFT.C": "cpp",
-        "MANDREL.C": "cpp"
+        "MANDREL.C": "cpp",
+        "GEAR.C": "cpp"
     }
 }

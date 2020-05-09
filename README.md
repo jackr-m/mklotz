@@ -102,6 +102,10 @@ These are designed to be close to a 1-1 copy of Marv Klotz's programs from http:
     - A: Python handles files differently than C (obviously). In many cases I found it easier to change up the data structure so that the files could be handled with regular expressions, making it easier to modify the format, and allow as many entries as your RAM space can handle.
 
 # Change-Log:
+v0.J0:
+- Finished GEAR.PY
+- Updated template.py
+
 v0.I0:
 - Finished MANDREL.PY
     - Original MANDREL.EXE seems to do the same calculation for music wire and phosphorus bronze?
