@@ -25,11 +25,11 @@ These are designed to be close to a 1-1 copy of Marv Klotz's programs from http:
 - \MANUF\BELT\QBELT
 - \MANUF\BELT\PCD
 - \MANUF\BALLCUT
+- \MANUF\CMITER
 
 ### Programs to be converted soon:
 - \MANUF\BELT\BELT.EXE
 - \MANUF\CHANGE
-- \MANUF\CMITER
 - \MANUF\COLLET
 - \MANUF\DIFFTHRD
 - \MANUF\DIVHEAD
@@ -84,6 +84,9 @@ These are designed to be close to a 1-1 copy of Marv Klotz's programs from http:
 5. Add option to print result to the console or a file for the programs that normally only print to a file
 
 # Change-Log:
+v0.D0:
+- Finished CMITER.PY
+
 v0.C5:
 - Finished PCD.PY
 
