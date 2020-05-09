@@ -12,6 +12,10 @@
         "SPRING.C": "cpp",
         "BEND.C": "cpp",
         "MIXTURE.C": "cpp",
-        "CUSP.C": "cpp"
+        "CUSP.C": "cpp",
+        "BELT.C": "cpp",
+        "PCD.C": "cpp",
+        "QBELT.C": "cpp",
+        "BALLCUT.C": "cpp"
     }
 }

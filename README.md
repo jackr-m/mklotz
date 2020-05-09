@@ -1,10 +1,10 @@
-# mklotz
+# mklotz Rewrite
 A python3 rewrite of Marv Klotz's classic programs.  Designed to work in any python 3 environment, including micropython.
 
 These are designed to be close to a 1-1 copy of Marv Klotz's programs from http://www.myvirtualnetwork.com/mklotz/
 
 
-Currently converted programs:
+## Currently converted programs:
 - \MANUF\3WIRE
 - \MANUF\ROTARY
 - \MANUF\SINEBAR (EVERYTHING DONE EXCEPT FOR FINDING THE INDIVIDUAL GAGE BLOCKS)
@@ -22,10 +22,11 @@ Currently converted programs:
 - \MANUF\SPEED
 - \MANUF\BEND
 - \MANUF\CUSP
+- \MANUF\BELT\QBELT
+- \MANUF\BELT\PCD
 
-Programs to be converted soon:
-- \MANUF\BELT
-- \MANUF\PULLEY
+### Programs to be converted soon:
+- \MANUF\BELT\BELT.EXE
 - \MANUF\BALLCUT
 - \MANUF\CHANGE
 - \MANUF\CMITER
@@ -63,7 +64,7 @@ Programs to be converted soon:
 - \SUBS\OHM
 
 
-Challenge programs (will take a while to convert but are extremely useful):
+### Challenge programs (will take a while to convert but are extremely useful):
 - \MANUF\DRILL
 - \SUBS\SPRING
 - \MANUF\FINDTHRD
@@ -74,16 +75,22 @@ Challenge programs (will take a while to convert but are extremely useful):
 - \SUBS\CUTTER
     - Will do if I'm feeling like brushing up on my Visual Basic
 
-#
-To-do List (for things other than converting programs):
+## To-do List (for things other than converting programs):
+-----
 1. Create two directiories for short file names (DOS compatability) and long file names (more descriptive)
 2. Compile python programs into a single .exe file to mimick mklotz's original programs
 3. Create a list to help you find/figure out what each program is for.
 4. Figure out how releases work
 5. Add option to print result to the console or a file for the programs that normally only print to a file
 
-#
-Change-Log:
+# Change-Log:
+
+v0.B0:
+- Finished QBELT.PY
+- Started PCD.PY
+- Started BALLCUT.PY
+- Updated README.md formatting
+
 v0.A0:
 - Finished CUSP.PY
 
