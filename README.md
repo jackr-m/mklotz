@@ -27,6 +27,7 @@ These are designed to be close to a 1-1 copy of Marv Klotz's programs from http:
 - \MANUF\GAGE
 - \MANUF\KNURL
 - \MANUF\LOFT
+- \MANUF\MANDREL
 - \MANUF\ROTARY
 - \MANUF\SINEBAR (EVERYTHING DONE EXCEPT FOR FINDING THE INDIVIDUAL GAGE BLOCKS)
 - \MANUF\SPEED
@@ -42,7 +43,6 @@ These are designed to be close to a 1-1 copy of Marv Klotz's programs from http:
 - \MANUF\HORSE
     - Will add an option to convert between Watts & HP
 - \MANUF\LVERN
-- \MANUF\MANDREL
 - \MANUF\MRADIUS
 - \MANUF\MIXTURE
 - \MANUF\REVOLVER
@@ -102,6 +102,11 @@ These are designed to be close to a 1-1 copy of Marv Klotz's programs from http:
     - A: Python handles files differently than C (obviously). In many cases I found it easier to change up the data structure so that the files could be handled with regular expressions, making it easier to modify the format, and allow as many entries as your RAM space can handle.
 
 # Change-Log:
+v0.I0:
+- Finished MANDREL.PY
+    - Original MANDREL.EXE seems to do the same calculation for music wire and phosphorus bronze?
+        - My program gives the correct? 2 different measurements
+
 v0.H0:
 - Finished LOFT.PY
     - Added option to change calculation if materials are different

@@ -21,6 +21,7 @@
         "COLLET.C": "cpp",
         "DIFFTHRD.C": "cpp",
         "DOVETAIL.C": "cpp",
-        "LOFT.C": "cpp"
+        "LOFT.C": "cpp",
+        "MANDREL.C": "cpp"
     }
 }
