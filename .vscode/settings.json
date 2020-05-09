@@ -17,6 +17,7 @@
         "PCD.C": "cpp",
         "QBELT.C": "cpp",
         "BALLCUT.C": "cpp",
-        "CMITER.C": "cpp"
+        "CMITER.C": "cpp",
+        "COLLET.C": "cpp"
     }
 }

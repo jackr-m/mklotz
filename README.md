@@ -26,11 +26,11 @@ These are designed to be close to a 1-1 copy of Marv Klotz's programs from http:
 - \MANUF\BELT\PCD
 - \MANUF\BALLCUT
 - \MANUF\CMITER
+- \MANUF\COLLET
 
 ### Programs to be converted soon:
 - \MANUF\BELT\BELT.EXE
 - \MANUF\CHANGE
-- \MANUF\COLLET
 - \MANUF\DIFFTHRD
 - \MANUF\DIVHEAD
 - \MANUF\DOVETAIL
@@ -83,7 +83,31 @@ These are designed to be close to a 1-1 copy of Marv Klotz's programs from http:
 4. Figure out how releases work
 5. Add option to print result to the console or a file for the programs that normally only print to a file
 
+## FAQ:
+----
+- Q: Why haven't you converted program X?
+    - A: Check the "Programs to be converted soon" list. If it's on there, please be patient.  If it's not, file a GitHub issue and I'll take a look at it!
+
+- Q: What's the upython.exe for?
+    - A: That's micropython that's been compiled for FreeDOS (but works with any DOS from experience). Taken from https://github.com/pohmelie/micropython-freedos
+
+- Q: Why are there no trailing zeros in the outputs like the original programs?
+    - A: I haven't fully figured out how to get the python formatting to do that reliably.  When/if I do, I will most likely go back and change all of the programs to match the originals, as I think seeing a zero at the end is easier to match what the handwheel or DRO says.  It's not totally unusable without it though, and I'd rather be able to use the programs.
+
+- Q: When will this be done?
+    - A: Whenever I get around to it. This really is just for fun.  I probably won't be doing any more conversions past what's on the "Programs to be converted soon" list.
+
+- Q: Too many decimal places!
+    - A: In most cases I tried to round the answers to the tenths of and inch, as that is the usual practical limit of measuring normal things in a shop.  If you need more change it!  If this is a common request I might go back and add a "rounding" variable at the top of each file for people to change.
+
+- Q: Why is are the data (.DAT) files different for the python programs?
+    - A: Python handles files differently than C (obviously). In many cases I found it easier to change up the data structure so that the files could be handled with regular expressions, making it easier to modify the format, and allow as many entries as your RAM space can handle.
+
 # Change-Log:
+v0.E0:
+- Finished COLLET.PY
+- Moved FAQ above Change-Log
+
 v0.D0:
 - Finished CMITER.PY
 
@@ -176,23 +200,3 @@ v0.10:
 
 v0.00:
 - Added readme & license
-
-#
-FAQ:
-- Q: Why haven't you converted program X?
-    - A: Check the "Programs to be converted soon" list. If it's on there, please be patient.  If it's not, file a GitHub issue and I'll take a look at it!
-
-- Q: What's the upython.exe for?
-    - A: That's micropython that's been compiled for FreeDOS (but works with any DOS from experience). Taken from https://github.com/pohmelie/micropython-freedos
-
-- Q: Why are there no trailing zeros in the outputs like the original programs?
-    - A: I haven't fully figured out how to get the python formatting to do that reliably.  When/if I do, I will most likely go back and change all of the programs to match the originals, as I think seeing a zero at the end is easier to match what the handwheel or DRO says.  It's not totally unusable without it though, and I'd rather be able to use the programs.
-
-- Q: When will this be done?
-    - A: Whenever I get around to it. This really is just for fun.  I probably won't be doing any more conversions past what's on the "Programs to be converted soon" list.
-
-- Q: Too many decimal places!
-    - A: In most cases I tried to round the answers to the tenths of and inch, as that is the usual practical limit of measuring normal things in a shop.  If you need more change it!  If this is a common request I might go back and add a "rounding" variable at the top of each file for people to change.
-
-- Q: Why is are the data (.DAT) files different for the python programs?
-    - A: Python handles files differently than C (obviously). In many cases I found it easier to change up the data structure so that the files could be handled with regular expressions, making it easier to modify the format, and allow as many entries as your RAM space can handle.
