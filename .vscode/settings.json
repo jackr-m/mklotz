@@ -20,6 +20,7 @@
         "CMITER.C": "cpp",
         "COLLET.C": "cpp",
         "DIFFTHRD.C": "cpp",
-        "DOVETAIL.C": "cpp"
+        "DOVETAIL.C": "cpp",
+        "LOFT.C": "cpp"
     }
 }

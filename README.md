@@ -6,29 +6,30 @@ These are designed to be close to a 1-1 copy of Marv Klotz's programs from http:
 
 ## Currently converted programs:
 - \MANUF\3WIRE
-- \MANUF\ROTARY
-- \MANUF\SINEBAR (EVERYTHING DONE EXCEPT FOR FINDING THE INDIVIDUAL GAGE BLOCKS)
-- \MANUF\BOLTCIRC
-- \MANUF\COMPOUND
-- \MANUF\DALLOW
-- \MANUF\KNURL
-- \MANUF\DOT
-- \MANUF\DPLATE
-- \MANUF\DIAM
-- \MANUF\GAGE
-- \MANUF\FEED
-- \MANUF\FITS
-- \MANUF\ECCENT
-- \MANUF\SPEED
-- \MANUF\BEND
-- \MANUF\CUSP
-- \MANUF\BELT\QBELT
-- \MANUF\BELT\PCD
 - \MANUF\BALLCUT
+- \MANUF\BELT\PCD
+- \MANUF\BELT\QBELT
+- \MANUF\BEND
+- \MANUF\BOLTCIRC
 - \MANUF\CMITER
 - \MANUF\COLLET
+- \MANUF\COMPOUND
+- \MANUF\CUSP
+- \MANUF\DALLOW
+- \MANUF\DIAM
 - \MANUF\DIFFTHRD
+- \MANUF\DOT
 - \MANUF\DOVETAIL
+- \MANUF\DPLATE
+- \MANUF\ECCENT
+- \MANUF\FEED
+- \MANUF\FITS
+- \MANUF\GAGE
+- \MANUF\KNURL
+- \MANUF\LOFT
+- \MANUF\ROTARY
+- \MANUF\SINEBAR (EVERYTHING DONE EXCEPT FOR FINDING THE INDIVIDUAL GAGE BLOCKS)
+- \MANUF\SPEED
 
 ### Programs to be converted soon:
 - \MANUF\BELT\BELT.EXE
@@ -40,9 +41,6 @@ These are designed to be close to a 1-1 copy of Marv Klotz's programs from http:
     - Add more pressure angles
 - \MANUF\HORSE
     - Will add an option to convert between Watts & HP
-- \MANUF\LOFT
-    - Add option to calculate different materials automatically
-        - Ask if tensile strength is the same for screw and hole
 - \MANUF\LVERN
 - \MANUF\MANDREL
 - \MANUF\MRADIUS
@@ -104,6 +102,11 @@ These are designed to be close to a 1-1 copy of Marv Klotz's programs from http:
     - A: Python handles files differently than C (obviously). In many cases I found it easier to change up the data structure so that the files could be handled with regular expressions, making it easier to modify the format, and allow as many entries as your RAM space can handle.
 
 # Change-Log:
+v0.H0:
+- Finished LOFT.PY
+    - Added option to change calculation if materials are different
+- Sorted Completed Programs list alphabetically
+
 v0.G0:
 - Finished DOVETAIL.PY
 
