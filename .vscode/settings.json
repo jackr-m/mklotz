@@ -26,6 +26,7 @@
         "GEAR.C": "cpp",
         "OHM.C": "cpp",
         "GEARPA.C": "cpp",
-        "MRADIUS.C": "cpp"
+        "MRADIUS.C": "cpp",
+        "REVOLVER.C": "cpp"
     }
 }
