@@ -32,6 +32,7 @@ These are designed to be close to a 1-1 copy of Marv Klotz's programs from http:
 - \MANUF\MRADIUS
 - \MANUF\REVOLVER
 - \MANUF\ROTARY
+- \MANUF\ROUNDER
 - \MANUF\SINEBAR (EVERYTHING DONE EXCEPT FOR FINDING THE INDIVIDUAL GAGE BLOCKS)
 - \MANUF\SPEED
 - \SUBS\OHM
@@ -46,7 +47,6 @@ These are designed to be close to a 1-1 copy of Marv Klotz's programs from http:
     - Will add an option to convert between Watts & HP
 - \MANUF\LVERN
 - \MANUF\MIXTURE
-- \MANUF\ROUNDER
 - \MANUF\RATTLE
 - \MANUF\SPROCKET
 - \MANUF\STICK
@@ -101,6 +101,10 @@ These are designed to be close to a 1-1 copy of Marv Klotz's programs from http:
     - A: Python handles files differently than C (obviously). In many cases I found it easier to change up the data structure so that the files could be handled with regular expressions, making it easier to modify the format, and allow as many entries as your RAM space can handle.
 
 # Change-Log:
+v0.O0:
+- Finished ROUNDER.PY
+- Removed accidental BALLCUTPY.OUT from root
+
 v0.N0:
 - Finished REVOLVER.PY
 
