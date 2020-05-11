@@ -25,6 +25,7 @@
         "MANDREL.C": "cpp",
         "GEAR.C": "cpp",
         "OHM.C": "cpp",
-        "GEARPA.C": "cpp"
+        "GEARPA.C": "cpp",
+        "MRADIUS.C": "cpp"
     }
 }
