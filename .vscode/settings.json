@@ -28,6 +28,7 @@
         "GEARPA.C": "cpp",
         "MRADIUS.C": "cpp",
         "REVOLVER.C": "cpp",
-        "ROUNDER.C": "cpp"
+        "ROUNDER.C": "cpp",
+        "LVERN.C": "cpp"
     }
 }
