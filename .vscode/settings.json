@@ -29,6 +29,7 @@
         "MRADIUS.C": "cpp",
         "REVOLVER.C": "cpp",
         "ROUNDER.C": "cpp",
-        "LVERN.C": "cpp"
+        "LVERN.C": "cpp",
+        "RATTLE.C": "cpp"
     }
 }
