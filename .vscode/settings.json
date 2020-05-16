@@ -33,6 +33,8 @@
         "RATTLE.C": "cpp",
         "SLUG.C": "cpp",
         "PLATE.C": "cpp",
-        "HORSE.C": "cpp"
+        "HORSE.C": "cpp",
+        "SPROCKET.C": "cpp",
+        "CHAIN.C": "cpp"
     }
 }
