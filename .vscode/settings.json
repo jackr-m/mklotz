@@ -36,6 +36,7 @@
         "HORSE.C": "cpp",
         "SPROCKET.C": "cpp",
         "CHAIN.C": "cpp",
-        "EXPAND.C": "cpp"
+        "EXPAND.C": "cpp",
+        "STICK.C": "cpp"
     }
 }

@@ -22,6 +22,7 @@ These are designed to be close to a 1-1 copy of Marv Klotz's programs from http:
 - \MANUF\DOVETAIL
 - \MANUF\DPLATE
 - \MANUF\ECCENT
+- \MANUF\EXPAND
 - \MANUF\FEED
 - \MANUF\FITS
 - \MANUF\GAGE
@@ -40,6 +41,7 @@ These are designed to be close to a 1-1 copy of Marv Klotz's programs from http:
 - \MANUF\SPEED
 - \MANUF\SPROCKET\CHAIN
 - \MANUF\SPROCKET\SPROCKET
+- \MANUF\STICK
 - \MAUF\SLUG\PLATE
 - \MAUF\SLUG\SLUG
 - \SUBS\OHM
@@ -48,10 +50,8 @@ These are designed to be close to a 1-1 copy of Marv Klotz's programs from http:
 - \MANUF\BELT\BELT.EXE
 - \MANUF\CHANGE
 - \MANUF\DIVHEAD
-- \MANUF\EXPAND
 - \MANUF\GEAR
 - \MANUF\MIXTURE
-- \MANUF\STICK
 - \MANUF\TUBEWALL
 - \MANUF\UGROOVE
 - \MANUF\VREV
@@ -101,6 +101,9 @@ These are designed to be close to a 1-1 copy of Marv Klotz's programs from http:
     - A: Python handles files differently than C (obviously). In many cases I found it easier to change up the data structure so that the files could be handled with regular expressions, making it easier to modify the format, and allow as many entries as your RAM space can handle.
 
 # Change-Log:
+v0.V0:
+- Finished STICK.PY
+
 v0.U0:
 - Corrected the lack of sprocket caliper factor for SPROCKET.PY
 - Finished EXPAND.PY
