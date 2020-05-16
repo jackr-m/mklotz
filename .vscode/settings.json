@@ -37,6 +37,7 @@
         "SPROCKET.C": "cpp",
         "CHAIN.C": "cpp",
         "EXPAND.C": "cpp",
-        "STICK.C": "cpp"
+        "STICK.C": "cpp",
+        "KEYWAY.C": "cpp"
     }
 }

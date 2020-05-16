@@ -44,6 +44,7 @@ These are designed to be close to a 1-1 copy of Marv Klotz's programs from http:
 - \MANUF\STICK
 - \MAUF\SLUG\PLATE
 - \MAUF\SLUG\SLUG
+- \SUBS\KEYWAY
 - \SUBS\OHM
 
 ### Programs to be converted soon:
@@ -58,7 +59,6 @@ These are designed to be close to a 1-1 copy of Marv Klotz's programs from http:
 - \MANUF\WIRE
 - \MISC\TEMP
 - \SUBS\CSK
-- \SUBS\KEYWAY
 
 
 ### Challenge programs (will take a while to convert but are extremely useful):
@@ -101,6 +101,9 @@ These are designed to be close to a 1-1 copy of Marv Klotz's programs from http:
     - A: Python handles files differently than C (obviously). In many cases I found it easier to change up the data structure so that the files could be handled with regular expressions, making it easier to modify the format, and allow as many entries as your RAM space can handle.
 
 # Change-Log:
+v0.W0:
+- Finished SUBS\KEYWAY.PY
+
 v0.V0:
 - Finished STICK.PY
 
