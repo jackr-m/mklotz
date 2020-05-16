@@ -26,6 +26,7 @@ These are designed to be close to a 1-1 copy of Marv Klotz's programs from http:
 - \MANUF\FITS
 - \MANUF\GAGE
 - \MANUF\GEARPA - PLEASE file a GitHub issue is you know the range of teeth for 25 or 30 deg pressure angle
+- \MANUF\HORSE
 - \MANUF\KNURL
 - \MANUF\LOFT
 - \MANUF\LVERN
@@ -47,8 +48,6 @@ These are designed to be close to a 1-1 copy of Marv Klotz's programs from http:
 - \MANUF\DIVHEAD
 - \MANUF\EXPAND
 - \MANUF\GEAR
-- \MANUF\HORSE
-    - Will add an option to convert between Watts & HP
 - \MANUF\MIXTURE
 - \MANUF\SPROCKET
 - \MANUF\STICK
@@ -101,6 +100,10 @@ These are designed to be close to a 1-1 copy of Marv Klotz's programs from http:
     - A: Python handles files differently than C (obviously). In many cases I found it easier to change up the data structure so that the files could be handled with regular expressions, making it easier to modify the format, and allow as many entries as your RAM space can handle.
 
 # Change-Log:
+v0.S0:
+- Finished HORSE.PY
+    - Added ability to convert between watts and horsepower
+
 v0.R0:
 - Finished SLUG.PY
 - Finished PLATE.PY
