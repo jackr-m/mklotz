@@ -12,6 +12,9 @@ def tand(angle):
     return math.tan(math.radians(angle))
 
 def vin(prompt, defvalue, **kwargs):
+    """Create an input prompt with a defualt answer
+    
+    Add a "units" tag for kwargs for units to be included"""
     units = kwargs.get('units', None)
     if (units == None):
         input_prompt = prompt + ' [' + str(defvalue) + '] ? '

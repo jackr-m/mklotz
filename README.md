@@ -37,6 +37,8 @@ These are designed to be close to a 1-1 copy of Marv Klotz's programs from http:
 - \MANUF\ROUNDER
 - \MANUF\SINEBAR (EVERYTHING DONE EXCEPT FOR FINDING THE INDIVIDUAL GAGE BLOCKS)
 - \MANUF\SPEED
+- \MAUF\SLUG\PLATE
+- \MAUF\SLUG\SLUG
 - \SUBS\OHM
 
 ### Programs to be converted soon:
@@ -50,8 +52,6 @@ These are designed to be close to a 1-1 copy of Marv Klotz's programs from http:
 - \MANUF\MIXTURE
 - \MANUF\SPROCKET
 - \MANUF\STICK
-- \MAUF\SLUG
-    - Includes SLUG.C & PLATE.C
 - \MANUF\TUBEWALL
 - \MANUF\UGROOVE
 - \MANUF\VREV
@@ -101,6 +101,11 @@ These are designed to be close to a 1-1 copy of Marv Klotz's programs from http:
     - A: Python handles files differently than C (obviously). In many cases I found it easier to change up the data structure so that the files could be handled with regular expressions, making it easier to modify the format, and allow as many entries as your RAM space can handle.
 
 # Change-Log:
+v0.R0:
+- Finished SLUG.PY
+- Finished PLATE.PY
+- Updated template.py
+
 v0.Q0:
 - Finished RATTLE.PY
 

@@ -30,6 +30,8 @@
         "REVOLVER.C": "cpp",
         "ROUNDER.C": "cpp",
         "LVERN.C": "cpp",
-        "RATTLE.C": "cpp"
+        "RATTLE.C": "cpp",
+        "SLUG.C": "cpp",
+        "PLATE.C": "cpp"
     }
 }
