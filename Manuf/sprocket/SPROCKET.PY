@@ -33,7 +33,7 @@ def main():
     pd=p/sind(180/n)
     od=p*(0.6+1/tand(180/n))
     
-    if (n % 2 == 0):
+    if (n % 2 != 0):
         cfact=pd*cosd(90/n)
         cd=cfact-rd
     else:
@@ -42,7 +42,7 @@ def main():
 
     print('\nSprocket pitch diameter = {0} in'.format(round(pd,4)))
     print('Sprocket outside diameter = {0} in'.format(round(od,4)))
-    if (n % 2 == 0):
+    if (n % 2 != 0):
         print('Caliper factor = {0} in'.format(round(cfact,4)))
     print('Sprocket caliper diameter = {0} in'.format(round(cd,4)))
     print('Maximum hub diameter = {0} in'.format(round(mhd,4)))

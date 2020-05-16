@@ -35,6 +35,7 @@
         "PLATE.C": "cpp",
         "HORSE.C": "cpp",
         "SPROCKET.C": "cpp",
-        "CHAIN.C": "cpp"
+        "CHAIN.C": "cpp",
+        "EXPAND.C": "cpp"
     }
 }

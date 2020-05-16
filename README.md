@@ -101,6 +101,10 @@ These are designed to be close to a 1-1 copy of Marv Klotz's programs from http:
     - A: Python handles files differently than C (obviously). In many cases I found it easier to change up the data structure so that the files could be handled with regular expressions, making it easier to modify the format, and allow as many entries as your RAM space can handle.
 
 # Change-Log:
+v0.U0:
+- Corrected the lack of sprocket caliper factor for SPROCKET.PY
+- Finished EXPAND.PY
+
 v0.T0:
 - Finished SPROCKET.PY
 - Finished CHAIN.PY
