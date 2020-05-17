@@ -45,6 +45,7 @@ These are designed to be close to a 1-1 copy of Marv Klotz's programs from http:
 - \MAUF\SLUG\PLATE
 - \MAUF\SLUG\SLUG
 - \SUBS\INCHTOMM
+- \SUBS\INMMCONV
 - \SUBS\KEYWAY
 - \SUBS\OHM
 
@@ -103,6 +104,9 @@ These are designed to be close to a 1-1 copy of Marv Klotz's programs from http:
     - A: Python handles files differently than C (obviously). In many cases I found it easier to change up the data structure so that the files could be handled with regular expressions, making it easier to modify the format, and allow as many entries as your RAM space can handle.
 
 # Change-Log:
+v0.Y0:
+- Finished my next step in inch-to-mm conversions by adding a program that can do both and switch quickly.
+
 v0.X0:
 - Added my own programs, INCHTOMM.PY & MMTOINCH.PY for those who want to do quick inch to milimeter conversions
     - Especially useful if you only have inch calipers/micrometers or mm calipers/micrometers
