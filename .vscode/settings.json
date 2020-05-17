@@ -39,6 +39,7 @@
         "EXPAND.C": "cpp",
         "STICK.C": "cpp",
         "KEYWAY.C": "cpp",
-        "TUBEWALL.C": "cpp"
+        "TUBEWALL.C": "cpp",
+        "UGROOVE.C": "cpp"
     }
 }
