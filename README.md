@@ -42,8 +42,11 @@ These are designed to be close to a 1-1 copy of Marv Klotz's programs from http:
 - \MANUF\SPROCKET\CHAIN
 - \MANUF\SPROCKET\SPROCKET
 - \MANUF\STICK
+- \MANUF\TUBEWALL
+- \MANUF\UGROOVE
 - \MAUF\SLUG\PLATE
 - \MAUF\SLUG\SLUG
+- \SUBS\CSK
 - \SUBS\INCHTOMM
 - \SUBS\INMMCONV
 - \SUBS\KEYWAY
@@ -55,12 +58,9 @@ These are designed to be close to a 1-1 copy of Marv Klotz's programs from http:
 - \MANUF\DIVHEAD
 - \MANUF\GEAR
 - \MANUF\MIXTURE
-- \MANUF\TUBEWALL
-- \MANUF\UGROOVE
 - \MANUF\VREV
 - \MANUF\WIRE
 - \MISC\TEMP
-- \SUBS\CSK
 
 
 ### Challenge programs (will take a while to convert but are extremely useful):
@@ -100,9 +100,15 @@ These are designed to be close to a 1-1 copy of Marv Klotz's programs from http:
     - A: In most cases I tried to round the answers to the tenths of and inch, as that is the usual practical limit of measuring normal things in a shop.  If you need more change it!  If this is a common request I might go back and add a "rounding" variable at the top of each file for people to change.
 
 - Q: Why is are the data (.DAT) files different for the python programs?
-    - A: Python handles files differently than C (obviously). In many cases I found it easier to change up the data structure so that the files could be handled with regular expressions, making it easier to modify the format, and allow as many entries as your RAM space can handle.
+    - Original A: Python handles files differently than C (obviously). In many cases I found it easier to change up the data structure so that the files could be handled with regular expressions, making it easier to modify the format, and allow as many entries as your RAM space can handle.
+    - New A: Some of the older programs I converted used different data files.  For the new programs, I changed up my method of regular expressions to better follow the old format.  These new programs (I'll check when it changed) use the same data files as the originals.
 
 # Change-Log:
+v0.AB0:
+- Finished \SUBS\CSK.PY
+- Updated Q&A
+- Fixed program list on README.md
+
 v0.AA0:
 - Finished UGROOVE.PY
 
