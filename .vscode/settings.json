@@ -38,6 +38,7 @@
         "CHAIN.C": "cpp",
         "EXPAND.C": "cpp",
         "STICK.C": "cpp",
-        "KEYWAY.C": "cpp"
+        "KEYWAY.C": "cpp",
+        "TUBEWALL.C": "cpp"
     }
 }

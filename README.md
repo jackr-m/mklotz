@@ -81,7 +81,6 @@ These are designed to be close to a 1-1 copy of Marv Klotz's programs from http:
 3. Create a list to help you find/figure out what each program is for.
 4. Figure out how releases work
 5. Add option to print result to the console or a file for the programs that normally only print to a file
-6. Create an inch/mm conversion program to do both way conversion
 
 ## FAQ:
 ----
@@ -104,6 +103,9 @@ These are designed to be close to a 1-1 copy of Marv Klotz's programs from http:
     - A: Python handles files differently than C (obviously). In many cases I found it easier to change up the data structure so that the files could be handled with regular expressions, making it easier to modify the format, and allow as many entries as your RAM space can handle.
 
 # Change-Log:
+v0.Z0:
+- Finished TUBEWALL.PY
+
 v0.Y0:
 - Finished my next step in inch-to-mm conversions by adding a program that can do both and switch quickly.
 
