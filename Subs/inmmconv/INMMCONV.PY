@@ -25,13 +25,13 @@ def vin(prompt, defvalue, **kwargs):
 
 def main():
     cls()
-    print('INCH-MILIMETER OR MILIMETER-INCH CONVERSIONS\n')
+    print('INCH-MILLIMETER OR MILLIMETER-INCH CONVERSIONS\n')
 
-    print('Choose your conversion, then input your measruement and press enter.')
+    print('Choose your conversion, then input your measurement and press enter.')
     print("Input 'q' to quit, or 'c' to change conversions.\n")
 
     def prompt():
-        print('(M)ilimeter Conversion or [I]nch Conversion ? ')
+        print('(M)illimeter Conversion or [I]nch Conversion ? ')
         convinput = getch()
         convinput = ord(convinput)
         if (convinput == 13):

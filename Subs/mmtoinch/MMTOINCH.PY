@@ -28,7 +28,7 @@ def vin(prompt, defvalue, **kwargs):
 
 def main():
     cls()
-    print('MILIMETER TO INCH CONVERSIONS\n')
+    print('MILLIMETER TO INCH CONVERSIONS\n')
 
     print('Input your measurement and press enter for a conversion.')
     print("Input 'q' to quit.\n")

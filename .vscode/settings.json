@@ -41,6 +41,8 @@
         "KEYWAY.C": "cpp",
         "TUBEWALL.C": "cpp",
         "UGROOVE.C": "cpp",
-        "CSK.C": "cpp"
+        "CSK.C": "cpp",
+        "TEMP.C": "cpp",
+        "UNIT.C": "cpp"
     }
 }
