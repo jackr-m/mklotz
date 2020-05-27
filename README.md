@@ -82,8 +82,7 @@ These are designed to be close to a 1-1 copy of Marv Klotz's programs from http:
 3. Create a list to help you find/figure out what each program is for.
 4. Figure out how releases work
 5. Add option to print result to the console or a file for the programs that normally only print to a file
-6. Add nearest fraction converter for the INMMCONV program
-7. Add size-awareness for rounding (as measurements get smaller use more units when rounding)
+8. Add size-awareness for rounding (as measurements get smaller use more units when rounding) for INCHMMCONV
 
 ## FAQ:
 ----
@@ -107,6 +106,9 @@ These are designed to be close to a 1-1 copy of Marv Klotz's programs from http:
     - New A: Some of the older programs I converted used different data files.  For the new programs, I changed up my method of regular expressions to better follow the old format.  These new programs (I'll check when it changed) use the same data files as the originals.
 
 # Change-Log:
+v0.BB2:
+- Added inch fractional conversions (to 128ths) for the inch-mm conversion programs
+
 v0.BB1:
 - Added "Converted Programs Jumble"
 

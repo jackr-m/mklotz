@@ -26,6 +26,22 @@ def vin(prompt, defvalue, **kwargs):
         input_prompt = prompt + ' [' + str(defvalue) + '] ' + str(units) + ' ? '
     return (input(input_prompt) or defvalue)
 
+def tofrac(x, largest_denominator=128):
+    if not x >= 0:
+        raise ValueError("x must be >= 0")
+    scaled = int(round(x * largest_denominator))
+    whole, leftover = divmod(scaled, largest_denominator)
+    if leftover:
+        while leftover % 2 == 0:
+            leftover >>= 1
+            largest_denominator >>= 1
+    #return whole, leftover, largest_denominator
+    if (whole == 0):
+        stringVal = str(leftover) + "/" + str(largest_denominator)
+    else:
+        stringVal = str(whole) + " " + str(leftover) + "/" + str(largest_denominator)
+    return stringVal
+
 def main():
     cls()
     print('MILLIMETER TO INCH CONVERSIONS\n')
@@ -40,7 +56,7 @@ def main():
         else:
             mm = float(mm)
             inch = mm/25.4
-            print('{0} mm = {1} in'.format(mm, round(inch,4)))
+            print('{0} mm = {1} in = {2} in'.format(mm, tofrac(inch), round(inch,4)))
             measure()
 
     measure()
