@@ -3,6 +3,7 @@
 #I knew was metric to put into CAD.
 
 import math
+from decimal import Decimal
 
 def cls():
     print("\x1B\x5B2J", end="")
@@ -54,9 +55,14 @@ def main():
         if (mm == 'q'):
             return
         else:
+            d = Decimal(mm)
             mm = float(mm)
             inch = mm/25.4
-            print('{0} mm = {1} in = {2} in'.format(mm, tofrac(inch), round(inch,4)))
+            if (d.as_tuple().exponent <= -3):
+                digits = 5
+            else:
+                digits = 4
+            print('{0} mm = {1} in = {2} in'.format(mm, tofrac(inch), round(inch,digits)))
             measure()
 
     measure()

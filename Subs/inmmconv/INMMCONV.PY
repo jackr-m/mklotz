@@ -1,5 +1,6 @@
 import math
 from msvcrt import getch
+from decimal import Decimal
 
 def cls():
     print("\x1B\x5B2J", end="")
@@ -67,9 +68,14 @@ def main():
         elif (mm == 'c'):
             measureINCH()
         else:
+            d = Decimal(mm)
             mm = float(mm)
             inch = mm/25.4
-            print('{0} mm = {1} in = {2} in'.format(mm, tofrac(inch), round(inch,4)))
+            if (d.as_tuple().exponent <= -3):
+                digits = 5
+            else:
+                digits = 4
+            print('{0} mm = {1} in = {2} in'.format(mm, tofrac(inch), round(inch,digits)))
             measureMM()
     
     def measureINCH():
@@ -79,9 +85,14 @@ def main():
         if (inch == 'c'):
             measureMM()
         else:
+            d = Decimal(inch)
             inch = float(inch)
             mm = inch*25.4
-            print('{0} in = {1} in = {2} mm'.format(inch, tofrac(inch), round(mm,3)))
+            if (d.as_tuple().exponent <= -4):
+                digits = 4
+            else:
+                digits = 3
+            print('{0} in = {1} in = {2} mm'.format(inch, tofrac(inch), round(mm,digits)))
             measureINCH()
 
     prompt()

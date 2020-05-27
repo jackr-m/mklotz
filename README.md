@@ -82,30 +82,35 @@ These are designed to be close to a 1-1 copy of Marv Klotz's programs from http:
 3. Create a list to help you find/figure out what each program is for.
 4. Figure out how releases work
 5. Add option to print result to the console or a file for the programs that normally only print to a file
-8. Add size-awareness for rounding (as measurements get smaller use more units when rounding) for INCHMMCONV
+6. Create branch for Beeware version of code
 
 ## FAQ:
 ----
+- Q: Why?  What are you doing this for?
+    - A: Fun.  These programs are of great utility to me (plenty for now, and lots of nice-to-haves for the future).  My ultimate goal is to have these programs in three main formats for myself and others.
+        1. CLI.  As they exist right now, the programs are perfectly usable from a computer and command line.
+        2. Calculator.  My calculator, TI-Nspire, has a port of micropython on it.  I'd like to be able to bring my calculator into the shop and use it for all of my machining calculations as it is a lot more robust than a laptop.
+        3. Universal app.  For CNC programmers that are already at the computer anyway, having a real dedicated UI for the most important programs is going to be pretty nice.  For machinists out by the machines, having a phone app version of these programs will be incredibly handy especially if you don't have a calculator like I do.
+
 - Q: Why haven't you converted program X?
     - A: Check the "Programs to be converted soon" list. If it's on there, please be patient.  If it's not, file a GitHub issue and I'll take a look at it!
 
 - Q: What's the upython.exe for?
     - A: That's micropython that's been compiled for FreeDOS (but works with any DOS from experience). Taken from https://github.com/pohmelie/micropython-freedos
 
-- Q: Why are there no trailing zeros in the outputs like the original programs?
-    - A: I haven't fully figured out how to get the python formatting to do that reliably.  When/if I do, I will most likely go back and change all of the programs to match the originals, as I think seeing a zero at the end is easier to match what the handwheel or DRO says.  It's not totally unusable without it though, and I'd rather be able to use the programs.
-
 - Q: When will this be done?
     - A: Whenever I get around to it. This really is just for fun.  I probably won't be doing any more conversions past what's on the "Programs to be converted soon" list.
-
-- Q: Too many decimal places!
-    - A: In most cases I tried to round the answers to the tenths of and inch, as that is the usual practical limit of measuring normal things in a shop.  If you need more change it!  If this is a common request I might go back and add a "rounding" variable at the top of each file for people to change.
 
 - Q: Why is are the data (.DAT) files different for the python programs?
     - Original A: Python handles files differently than C (obviously). In many cases I found it easier to change up the data structure so that the files could be handled with regular expressions, making it easier to modify the format, and allow as many entries as your RAM space can handle.
     - New A: Some of the older programs I converted used different data files.  For the new programs, I changed up my method of regular expressions to better follow the old format.  These new programs (I'll check when it changed) use the same data files as the originals.
 
 # Change-Log:
+v0.BB3:
+- Added decimal-placement aware rounding
+    - e.g., if you input something in the microns, output in ten-milionths rather than tenths
+- Updated Q&A
+
 v0.BB2:
 - Added inch fractional conversions (to 128ths) for the inch-mm conversion programs
 
