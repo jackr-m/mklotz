@@ -26,6 +26,7 @@ These are designed to be close to a 1-1 copy of Marv Klotz's programs from http:
 - \MANUF\FEED
 - \MANUF\FITS
 - \MANUF\GAGE
+- \MANUF\GEAR
 - \MANUF\GEARPA - PLEASE file a GitHub issue is you know the range of teeth for 25 or 30 deg pressure angle
 - \MANUF\HORSE
 - \MANUF\KNURL
@@ -58,7 +59,6 @@ These are designed to be close to a 1-1 copy of Marv Klotz's programs from http:
 - \MANUF\BELT\BELT.EXE
 - \MANUF\CHANGE
 - \MANUF\DIVHEAD
-- \MANUF\GEAR
 - \MANUF\MIXTURE
 - \MANUF\VREV
 
