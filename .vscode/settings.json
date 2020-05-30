@@ -43,7 +43,8 @@
         "UGROOVE.C": "cpp",
         "CSK.C": "cpp",
         "TEMP.C": "cpp",
-        "UNIT.C": "cpp"
+        "UNIT.C": "cpp",
+        "WIRE.C": "cpp"
     },
-    "python.pythonPath": "C:\\Users\\jack7\\AppData\\Local\\Programs\\Python\\Python38-32\\python.exe"
+    "python.pythonPath": "C:\\Users\\jack7\\AppData\\Local\\Programs\\Python\\Python37-32\\python.exe"
 }
