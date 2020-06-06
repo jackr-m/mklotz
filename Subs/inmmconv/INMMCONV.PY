@@ -85,7 +85,12 @@ def main():
         if (inch == 'c'):
             measureMM()
         else:
-            d = Decimal(inch)
+            try:
+                d = Decimal(inch)
+            except:
+                num, denom = inch.split('/')
+                inch = float(num)/float(denom)
+                d = Decimal(inch)
             inch = float(inch)
             mm = inch*25.4
             if (d.as_tuple().exponent <= -4):
