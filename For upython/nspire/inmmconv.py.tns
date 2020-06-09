@@ -1,0 +1,89 @@
+import math
+#from msvcrt import getch
+#from decimal import Decimal
+
+def vin(prompt, defvalue, **kwargs):
+    """Create an input prompt with a defualt answer
+    
+    Add a "units" tag for kwargs for units to be included"""
+    units = kwargs.get('units', None)
+    if (units == None):
+        input_prompt = prompt + ' [' + str(defvalue) + '] ? '
+    else:
+        input_prompt = prompt + ' [' + str(defvalue) + '] ' + str(units) + ' ? '
+    return (input(input_prompt) or defvalue)
+
+def tofrac(x, largest_denominator=128):
+    if not x >= 0:
+        raise ValueError("x must be >= 0")
+    scaled = int(x * largest_denominator)
+    whole, leftover = divmod(scaled, largest_denominator)
+    if leftover:
+        while leftover % 2 == 0:
+            leftover >>= 1
+            largest_denominator >>= 1
+    #return whole, leftover, largest_denominator
+    if (whole == 0):
+        stringVal = str(leftover) + "/" + str(largest_denominator)
+    else:
+        stringVal = str(whole) + " " + str(leftover) + "/" + str(largest_denominator)
+    return stringVal
+
+def main():
+    print('INCH-MILLIMETER OR MILLIMETER-INCH CONVERSIONS\n')
+
+    print('Choose your conversion, then input your measurement and press enter.')
+    print("Input 'q' to quit, or 'c' to change conversions.\n")
+
+    def prompt():
+        convinput = (input("(M)illimeter Conversion or [I]nch Conversion ? ") or "i")
+        if (convinput == "m"):
+            measureMM()
+        elif (convinput == "i"):
+            measureINCH()
+        else:
+            print('INVALID CONVERSION')
+            prompt()
+
+    def measureMM():
+        mm = vin("MM measurement", 5, units="mm")
+        if (mm == 'q'):
+            return
+        elif (mm == 'c'):
+            measureINCH()
+        else:
+            temp = math.modf(mm)
+            d = temp[0]
+            mm = float(mm)
+            inch = mm/25.4
+            """if (d.as_tuple().exponent <= -3):
+                digits = 5
+            else:
+                digits = 4"""
+            print('{0:0.5f} mm = {1} in = {2:.5f} in'.format(mm, tofrac(inch), inch))
+            measureMM()
+    
+    def measureINCH():
+        inch = vin("Inch measurement", 0.1969, units="in")
+        if (inch == 'q'):
+            return
+        if (inch == 'c'):
+            measureMM()
+        else:
+            try:
+                inch = float(inch)
+            except:
+                num, denom = inch.split('/')
+                inch = float(num)/float(denom)
+                inch = float(inch)
+            mm = inch*25.4
+            """if (d.as_tuple().exponent <= -4):
+                digits = 4
+            else:
+                digits = 3"""
+            print('{0:0.6} in = {1} in = {2:.4f} mm'.format(inch, tofrac(inch), mm))
+            measureINCH()
+
+    prompt()
+
+main()
