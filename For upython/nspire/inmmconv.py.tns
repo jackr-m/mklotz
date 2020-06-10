@@ -52,15 +52,16 @@ def main():
         elif (mm == 'c'):
             measureINCH()
         else:
-            temp = math.modf(mm)
-            d = temp[0]
-            mm = float(mm)
+            try:
+                mm = float(mm)
+            except:
+                pass
             inch = mm/25.4
             """if (d.as_tuple().exponent <= -3):
                 digits = 5
             else:
                 digits = 4"""
-            print('{0:0.5f} mm = {1} in = {2:.5f} in'.format(mm, tofrac(inch), inch))
+            print('{0} mm = {1} in = {2:.5f} in'.format(mm, tofrac(inch), inch))
             measureMM()
     
     def measureINCH():
