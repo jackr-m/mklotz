@@ -54,8 +54,8 @@ def main():
         hole_mmc = float(hole_mmc)
 
     #Shaft size
-    shaft_lmc = vin("shaft LMC", "?", units="in")
-    shaft_mmc = vin("shaft MMC", "?", units="in")
+    shaft_lmc = vin("Shaft LMC", "?", units="in")
+    shaft_mmc = vin("Shaft MMC", "?", units="in")
     if shaft_lmc == "?" and shaft_mmc != "?":
         print("Both shaft values must either a number or ?")
     elif shaft_lmc != "?" and shaft_mmc == "?":
