@@ -106,6 +106,9 @@ These are designed to be close to a 1-1 copy of Marv Klotz's programs from http:
     - New A: Some of the older programs I converted used different data files.  For the new programs, I changed up my method of regular expressions to better follow the old format.  These new programs (I'll check when it changed) use the same data files as the originals.
 
 # Change-Log:
+v.0EC4:
+- Removed last testing print from basicfit.py
+
 v.0EC3:
 - Moved converted programs jumble from /Converted Programs Jumble/Python3 to just /Converted Programs Jumble
     - Only have Python3 programs at the moment

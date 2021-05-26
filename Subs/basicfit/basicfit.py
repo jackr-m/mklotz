@@ -74,7 +74,6 @@ def main():
     elif clearance != "?" and allowance == "?":
         print("Both values must either a number or ?")
     
-    print("\n\n" + clearance + "\n\n")
     if clearance != "?":
         clearance = float(clearance)
     if allowance != "?":
