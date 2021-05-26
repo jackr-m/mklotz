@@ -1,4 +1,6 @@
 import math
+import time
+from time import gmtime, localtime
 
 def cls():
     print("\x1B\x5B2J", end="")
@@ -23,8 +25,23 @@ def vin(prompt, defvalue, **kwargs):
     return (input(input_prompt) or defvalue)
 
 def main():
-    cls()
-    
+    cls() 
+    print('TIME CONVERTER\n')
 
+    print('Current time is: {0} or {1}'.format(time.asctime(gmtime()) + "z", time.asctime(localtime()) + " " + time.tzname[0]) + "/" + str(int(time.timezone/60/60)) + "hrs")
+
+    def convert():
+        direction = str(vin("Convert [c]urrent timezone to other timezone, or (o)ther timezone to current, or (q)uit", "c"))
+
+        if direction == "c":
+            newzone = str(vin("Target timezone [UTC]", "UTC"))
+        elif direction == "o":
+            pass
+        elif direction == "q":
+            return
+        else:
+            convert()
+
+    convert()
 
 main()
