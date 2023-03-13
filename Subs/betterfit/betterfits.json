@@ -1,0 +1,27 @@
+{
+    "RC": [
+      {
+        "name": "RC1",
+        "holeLower": 0.001,
+        "holeUpper": 0.002
+      },
+      {
+        "name": "RC2",
+        "holeLower": 0.0004,
+        "holeUpper": 0.0006
+      }
+    ],
+
+    "LC": [
+      {
+        "name": "LC1",
+        "holeLower": 0.003,
+        "holeUpper": 0.005
+      },
+      {
+        "name": "LC2",
+        "holeLower": 0.004,
+        "holeUpper": 0.006
+      }
+    ]
+}
